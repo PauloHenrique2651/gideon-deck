@@ -43,16 +43,29 @@ Settings → Developer settings → Personal access tokens → Generate new toke
 Em ~30 segundos você recebe uma URL tipo `gideon-deck.vercel.app`.
 Todo novo `git push` na branch `main` gera um novo deploy automaticamente.
 
-## Observação sobre mobile
+## Correções de mobile já aplicadas nesta versão
 
-Testei a interatividade e encontrei 3 pontos que valem correção antes de
-divulgar o link em celular:
+1. **Overflow horizontal no Hero e no Sumário** — esses dois blocos usavam
+   `flex-wrap:nowrap`, então em telas estreitas o conteúdo era espremido/cortado.
+   Agora, abaixo de 760px de largura, eles empilham em coluna.
+2. **Bolinhas de navegação de 10px** — aumentadas para 22px em telas
+   estreitas (ainda compactas o bastante para caber as 11 na tela, mas bem
+   mais fáceis de tocar).
+3. **Efeito "tilt" travando no toque** — agora só é ativado em dispositivos
+   com mouse/trackpad reais (`hover: hover` + `pointer: fine`). Em celular o
+   efeito simplesmente não é acionado, então nenhum card fica torto depois
+   de tocar.
 
-1. Sem media queries — larguras fixas de até 1500px podem causar overflow
-   horizontal em telas pequenas.
-2. Bolinhas de navegação de 10x10px — abaixo do tamanho mínimo recomendado
-   de toque (44x44px).
-3. Efeito de "tilt" nos cards não reseta em touch (só reseta com
-   `pointerleave`, que nem sempre dispara ao soltar o dedo).
+## Publicando a atualização
 
-Posso preparar uma versão corrigida depois do primeiro deploy, se quiser.
+Como o repositório já existe e está conectado ao Vercel, basta commitar e
+dar push — o deploy é automático a cada push na branch `main`:
+
+```bash
+git add .
+git commit -m "Corrige interação mobile (overflow, touch targets, tilt)"
+git push
+```
+
+Em ~30 segundos a nova versão sobe sozinha na mesma URL do Vercel, sem
+precisar reconfigurar nada.
