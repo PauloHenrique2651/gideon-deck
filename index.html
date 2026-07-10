@@ -17,7 +17,7 @@
 <body>
 <x-dc>
 
-<div ref="{{ rootRef }}" style="position:relative;background:var(--bg);font-family:'Inter',sans-serif;overflow-x:hidden;--bg:#FAFAF8;--surface:#FFFFFF;--text:#121213;--text-soft:#6B6862;--text-faint:#9A968C;--border:rgba(18,18,19,0.10);--border-strong:rgba(18,18,19,0.28);--accent:#8C7F5E;--invert-bg:#121213;--invert-text:#FAFAF8;--ring:rgba(18,18,19,0.14);transition:background 0.4s ease;">
+<div ref="{{ rootRef }}" style="position:relative;background:var(--bg);font-family:'Inter',sans-serif;--bg:#FAFAF8;--surface:#FFFFFF;--text:#121213;--text-soft:#6B6862;--text-faint:#9A968C;--border:rgba(18,18,19,0.10);--border-strong:rgba(18,18,19,0.28);--accent:#8C7F5E;--invert-bg:#121213;--invert-text:#FAFAF8;--ring:rgba(18,18,19,0.14);transition:background 0.4s ease;">
 
   <canvas ref="{{ canvasRef }}" style="position:fixed;top:0;left:0;width:100vw;height:100vh;display:block;z-index:0;"></canvas>
 
@@ -25,12 +25,12 @@
     <div ref="{{ progressRef }}" style="height:100%;width:0%;background:var(--text);transition:width 0.05s linear;"></div>
   </div>
 
-  <div style="position:fixed;top:36px;left:var(--pad-x);z-index:40;display:flex;align-items:center;gap:14px;">
+  <div class="nav-logo" style="position:fixed;top:36px;left:var(--pad-x);z-index:40;display:flex;align-items:center;gap:14px;">
     <img ref="{{ navLogoRef }}" src="assets/images/logo-navy.png" alt="Gideon" style="width:30px;height:auto;">
     <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;color:var(--text);letter-spacing:0.06em;">GIDEON</span>
   </div>
 
-  <button onClick="{{ toggleTheme }}" title="Alternar tema" style="position:fixed;top:32px;right:44px;z-index:40;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color 0.25s;">
+  <button class="theme-toggle" onClick="{{ toggleTheme }}" title="Alternar tema" aria-label="Alternar tema claro/escuro" style="position:fixed;z-index:41;width:44px;height:44px;border-radius:50%;border:1px solid var(--border);background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color 0.25s;">
     <sc-if value="{{ isDark }}" hint-placeholder-val="{{ false }}">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4.5" stroke="var(--text)" stroke-width="1.6"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8l1.8-1.8M18 6l1.8-1.8" stroke="var(--text)" stroke-width="1.6" stroke-linecap="round"/></svg>
     </sc-if>
@@ -39,7 +39,7 @@
     </sc-if>
   </button>
 
-  <div style="position:fixed;right:44px;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:16px;">
+  <div class="nav-dots" style="position:fixed;right:44px;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:16px;">
     <button title="Capa" onClick="{{ goTo0 }}" style="width:7px;height:7px;border-radius:50%;border:none;background:var(--text);opacity:0.25;cursor:pointer;padding:0;"></button>
     <button title="Sumário" onClick="{{ goTo1 }}" style="width:7px;height:7px;border-radius:50%;border:none;background:var(--text);opacity:0.25;cursor:pointer;padding:0;"></button>
     <button title="Quem Somos" onClick="{{ goTo2 }}" style="width:7px;height:7px;border-radius:50%;border:none;background:var(--text);opacity:0.25;cursor:pointer;padding:0;"></button>
@@ -56,29 +56,26 @@
   <main style="position:relative;z-index:10;">
 
     <!-- 01 HERO -->
-    <section data-section data-screen-label="01 — Capa" style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:56px;text-align:center;padding:120px var(--pad-x) 64px;">
-      <div style="display:flex;gap:56px;align-items:center;max-width:1500px;width:100%;flex-wrap:nowrap;">
-        <div class="reveal" style="flex:1 1 480px;min-width:0;text-align:left;opacity:0;transform:translateY(40px);">
-          <div style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-kicker);letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:28px;">SOFTWARE HOUSE&nbsp;&nbsp;•&nbsp;&nbsp;INFRAESTRUTURA DE TI</div>
+    <section data-section data-screen-label="01 — Capa" class="hero-section" style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:56px;text-align:center;padding:120px var(--pad-x) 64px;">
+      <div class="hero-flex" style="display:flex;justify-content:center;max-width:1500px;width:100%;">
+        <div class="reveal hero-copy" style="max-width:760px;min-width:0;text-align:left;opacity:0;transform:translateY(40px);">
+          <div class="eyebrow" style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-kicker);letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:28px;">SOFTWARE HOUSE&nbsp;&nbsp;•&nbsp;&nbsp;INFRAESTRUTURA DE TI</div>
           <h1 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-hero);line-height:1.04;color:var(--text);font-weight:700;margin:0 0 32px 0;">
             <span style="display:block;">Inteligência de software</span>
             <span style="display:block;color:var(--text-soft);">que impulsiona negócios.</span>
           </h1>
-          <p style="font-size:var(--type-body);line-height:1.5;color:var(--text-soft);max-width:640px;margin:0;">
+          <p style="font-size:var(--type-body);line-height:1.5;color:var(--text-soft);max-width:640px;margin:0 0 40px 0;">
             Desenvolvemos sistemas, ERPs, CRMs, IA e plataformas sob medida —
             com a mesma precisão que aplicamos em cada linha de infraestrutura.
           </p>
-        </div>
-        <div style="flex:0 0 auto;width:min(280px,40vw);display:flex;align-items:center;justify-content:center;perspective:1200px;">
-          <div style="animation:floatY 6s ease-in-out infinite;">
-            <div style="width:clamp(140px,16vw,220px);height:clamp(140px,16vw,220px);position:relative;transform-style:preserve-3d;animation:spin3d 26s linear infinite;">
-              <img ref="{{ logoFrontRef }}" src="assets/images/logo-navy.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;backface-visibility:hidden;filter:drop-shadow(0 24px 48px rgba(0,0,0,0.25));">
-              <img ref="{{ logoBackRef }}" src="assets/images/logo-white.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:var(--invert-bg);border-radius:50%;padding:36px;transform:rotateY(180deg);backface-visibility:hidden;">
-            </div>
+          <div style="display:flex;flex-wrap:wrap;gap:28px;padding-top:24px;border-top:1px solid var(--border);">
+            <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.06em;color:var(--text-soft);"><span style="color:var(--accent);">▪</span>&nbsp; SOB MEDIDA</span>
+            <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.06em;color:var(--text-soft);"><span style="color:var(--accent);">▪</span>&nbsp; FULL-STACK</span>
+            <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.06em;color:var(--text-soft);"><span style="color:var(--accent);">▪</span>&nbsp; ENTREGA ÁGIL</span>
           </div>
         </div>
       </div>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--text-faint);">
+      <div class="hero-scrollcue" style="display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--text-faint);">
         <span style="font-size:var(--type-small);letter-spacing:0.1em;opacity:0.7;">ROLE PARA EXPLORAR</span>
         <svg width="20" height="26" viewBox="0 0 20 26" style="color:var(--text);animation:arrowBounce 1.8s ease-in-out infinite;"><path d="M10 0 L10 22 M2 14 L10 22 L18 14" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
@@ -87,32 +84,32 @@
     <!-- 02 SUMÁRIO -->
     <section data-section data-screen-label="02 — Sumário" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px var(--pad-x);">
       <div class="reveal" style="opacity:0;transform:translateY(40px);max-width:1400px;margin:0 auto;width:100%;">
-        <div style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-kicker);letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:20px;">SUMÁRIO</div>
+        <div class="eyebrow" style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-kicker);letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:20px;">SUMÁRIO</div>
         <h2 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-title);color:var(--text);font-weight:700;margin:0 0 56px 0;">O que você vai ver</h2>
         <div style="display:flex;flex-direction:column;">
 
           <button onClick="{{ goTo2 }}" class="tilt" style="all:unset;cursor:pointer;display:flex;align-items:center;gap:40px;padding:28px 8px;border-top:1px solid var(--border);transition:background 0.25s;">
-            <span style="font-family:'Space Grotesk',sans-serif;font-size:30px;color:var(--text-faint);font-weight:600;width:70px;">01</span>
+            <span style="font-family:var(--font-mono);font-size:20px;color:var(--accent);font-weight:500;width:70px;">01</span>
             <span style="font-family:'Space Grotesk',sans-serif;font-size:28px;color:var(--text);font-weight:600;width:320px;">Quem somos</span>
             <span style="font-size:19px;color:var(--text-soft);">Posicionamento e essência da Gideon</span>
           </button>
           <button onClick="{{ goTo3 }}" class="tilt" style="all:unset;cursor:pointer;display:flex;align-items:center;gap:40px;padding:28px 8px;border-top:1px solid var(--border);transition:background 0.25s;">
-            <span style="font-family:'Space Grotesk',sans-serif;font-size:30px;color:var(--text-faint);font-weight:600;width:70px;">02</span>
+            <span style="font-family:var(--font-mono);font-size:20px;color:var(--accent);font-weight:500;width:70px;">02</span>
             <span style="font-family:'Space Grotesk',sans-serif;font-size:28px;color:var(--text);font-weight:600;width:320px;">Serviços</span>
             <span style="font-size:19px;color:var(--text-soft);">Software, infraestrutura e suporte técnico</span>
           </button>
           <button onClick="{{ goTo4 }}" class="tilt" style="all:unset;cursor:pointer;display:flex;align-items:center;gap:40px;padding:28px 8px;border-top:1px solid var(--border);transition:background 0.25s;">
-            <span style="font-family:'Space Grotesk',sans-serif;font-size:30px;color:var(--text-faint);font-weight:600;width:70px;">03</span>
+            <span style="font-family:var(--font-mono);font-size:20px;color:var(--accent);font-weight:500;width:70px;">03</span>
             <span style="font-family:'Space Grotesk',sans-serif;font-size:28px;color:var(--text);font-weight:600;width:320px;">Como trabalhamos</span>
             <span style="font-size:19px;color:var(--text-soft);">Nossa metodologia de execução</span>
           </button>
           <button onClick="{{ goTo5 }}" class="tilt" style="all:unset;cursor:pointer;display:flex;align-items:center;gap:40px;padding:28px 8px;border-top:1px solid var(--border);transition:background 0.25s;">
-            <span style="font-family:'Space Grotesk',sans-serif;font-size:30px;color:var(--text-faint);font-weight:600;width:70px;">04</span>
+            <span style="font-family:var(--font-mono);font-size:20px;color:var(--accent);font-weight:500;width:70px;">04</span>
             <span style="font-family:'Space Grotesk',sans-serif;font-size:28px;color:var(--text);font-weight:600;width:320px;">Diferenciais</span>
             <span style="font-size:19px;color:var(--text-soft);">Segurança, qualidade e resultados</span>
           </button>
           <button onClick="{{ goTo8 }}" class="tilt" style="all:unset;cursor:pointer;display:flex;align-items:center;gap:40px;padding:28px 8px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);transition:background 0.25s;">
-            <span style="font-family:'Space Grotesk',sans-serif;font-size:30px;color:var(--text-faint);font-weight:600;width:70px;">05</span>
+            <span style="font-family:var(--font-mono);font-size:20px;color:var(--accent);font-weight:500;width:70px;">05</span>
             <span style="font-family:'Space Grotesk',sans-serif;font-size:28px;color:var(--text);font-weight:600;width:320px;">Proposta</span>
             <span style="font-size:19px;color:var(--text-soft);">Modelos de contratação e próximos passos</span>
           </button>
@@ -124,7 +121,7 @@
     <!-- 03 QUEM SOMOS -->
     <section data-section data-screen-label="03 — Quem Somos" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px var(--pad-x);">
       <div class="reveal" style="opacity:0;transform:translateY(40px);max-width:1400px;margin:0 auto;width:100%;">
-        <div style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-kicker);letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:20px;">ESSÊNCIA</div>
+        <div class="eyebrow" style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-kicker);letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:20px;">ESSÊNCIA</div>
         <h2 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-title);color:var(--text);font-weight:700;margin:0 0 20px 0;">Quem <span style="color:var(--text-soft);">Somos</span></h2>
         <p style="font-size:var(--type-body);color:var(--text-soft);max-width:820px;margin:0 0 60px 0;">Uma software house que também entende de cabo, switch e servidor.</p>
 
@@ -148,7 +145,7 @@
     <!-- 04 SERVIÇOS -->
     <section data-section data-screen-label="04 — Serviços" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px var(--pad-x);">
       <div class="reveal" style="opacity:0;transform:translateY(40px);max-width:1500px;margin:0 auto;width:100%;">
-        <div style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-kicker);letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:20px;">O QUE FAZEMOS</div>
+        <div class="eyebrow" style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-kicker);letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:20px;">O QUE FAZEMOS</div>
         <h2 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-title);color:var(--text);font-weight:700;margin:0 0 56px 0;">Nossos Serviços</h2>
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0;border-top:1px solid var(--border);border-left:1px solid var(--border);">
@@ -183,28 +180,28 @@
     <!-- 05 METODOLOGIA -->
     <section data-section data-screen-label="05 — Metodologia" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px var(--pad-x);">
       <div class="reveal" style="opacity:0;transform:translateY(40px);max-width:1500px;margin:0 auto;width:100%;">
-        <div style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-kicker);letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:20px;">COMO TRABALHAMOS</div>
+        <div class="eyebrow" style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-kicker);letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:20px;">COMO TRABALHAMOS</div>
         <h2 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-title);color:var(--text);font-weight:700;margin:0 0 64px 0;">Metodologia</h2>
 
         <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;">
           <div style="position:absolute;top:34px;left:12%;right:12%;height:1px;background:var(--border);"></div>
           <div class="tilt" style="position:relative;padding:0 20px 0 0;">
-            <div style="width:64px;height:64px;border-radius:50%;background:var(--bg);border:1.5px solid var(--text);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:32px;">01</div>
+            <div style="width:64px;height:64px;border-radius:50%;background:var(--bg);border:1.5px solid var(--text);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:18px;font-weight:500;color:var(--accent);margin-bottom:32px;">01</div>
             <h3 style="font-family:'Space Grotesk',sans-serif;font-size:22px;color:var(--text);font-weight:600;margin:0 0 12px 0;">Descoberta</h3>
             <p style="font-size:17px;color:var(--text-soft);line-height:1.5;margin:0;">Mapeamos processo, dor e objetivo real</p>
           </div>
           <div class="tilt" style="position:relative;padding:0 20px 0 0;">
-            <div style="width:64px;height:64px;border-radius:50%;background:var(--bg);border:1.5px solid var(--text);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:32px;">02</div>
+            <div style="width:64px;height:64px;border-radius:50%;background:var(--bg);border:1.5px solid var(--text);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:18px;font-weight:500;color:var(--accent);margin-bottom:32px;">02</div>
             <h3 style="font-family:'Space Grotesk',sans-serif;font-size:22px;color:var(--text);font-weight:600;margin:0 0 12px 0;">Arquitetura</h3>
             <p style="font-size:17px;color:var(--text-soft);line-height:1.5;margin:0;">Desenhamos a solução com foco em escala</p>
           </div>
           <div class="tilt" style="position:relative;padding:0 20px 0 0;">
-            <div style="width:64px;height:64px;border-radius:50%;background:var(--bg);border:1.5px solid var(--text);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:32px;">03</div>
+            <div style="width:64px;height:64px;border-radius:50%;background:var(--bg);border:1.5px solid var(--text);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:18px;font-weight:500;color:var(--accent);margin-bottom:32px;">03</div>
             <h3 style="font-family:'Space Grotesk',sans-serif;font-size:22px;color:var(--text);font-weight:600;margin:0 0 12px 0;">Desenvolvimento</h3>
             <p style="font-size:17px;color:var(--text-soft);line-height:1.5;margin:0;">Entregas ágeis, iterativas e visíveis</p>
           </div>
           <div class="tilt" style="position:relative;padding:0 20px 0 0;">
-            <div style="width:64px;height:64px;border-radius:50%;background:var(--bg);border:1.5px solid var(--text);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:32px;">04</div>
+            <div style="width:64px;height:64px;border-radius:50%;background:var(--bg);border:1.5px solid var(--text);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:18px;font-weight:500;color:var(--accent);margin-bottom:32px;">04</div>
             <h3 style="font-family:'Space Grotesk',sans-serif;font-size:22px;color:var(--text);font-weight:600;margin:0 0 12px 0;">Evolução</h3>
             <p style="font-size:17px;color:var(--text-soft);line-height:1.5;margin:0;">Suporte contínuo pós-lançamento</p>
           </div>
@@ -215,7 +212,7 @@
     <!-- 06 DIFERENCIAIS -->
     <section data-section data-screen-label="06 — Diferenciais" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px var(--pad-x);">
       <div class="reveal" style="opacity:0;transform:translateY(40px);max-width:1500px;margin:0 auto;width:100%;">
-        <div style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-kicker);letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:20px;">POR QUE GIDEON</div>
+        <div class="eyebrow" style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-kicker);letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:20px;">POR QUE GIDEON</div>
         <h2 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-title);color:var(--text);font-weight:700;margin:0 0 56px 0;">Diferenciais que pesam na decisão</h2>
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0;border-top:1px solid var(--border);border-left:1px solid var(--border);">
@@ -241,7 +238,7 @@
     <!-- 07 CONFIABILIDADE -->
     <section data-section data-screen-label="07 — Confiabilidade" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px var(--pad-x);">
       <div class="reveal" style="opacity:0;transform:translateY(40px);max-width:1400px;margin:0 auto;width:100%;">
-        <div style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-kicker);letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:20px;">CONFIABILIDADE</div>
+        <div class="eyebrow" style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-kicker);letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:20px;">CONFIABILIDADE</div>
         <h2 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-title);color:var(--text);font-weight:700;margin:0 0 56px 0;">Segurança &amp; Conformidade</h2>
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:60px;">
@@ -282,7 +279,7 @@
     <!-- 08 SEGMENTOS -->
     <section data-section data-screen-label="08 — Segmentos" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px var(--pad-x);">
       <div class="reveal" style="opacity:0;transform:translateY(40px);max-width:1400px;margin:0 auto;width:100%;">
-        <div style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-kicker);letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:20px;">ONDE ATUAMOS</div>
+        <div class="eyebrow" style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-kicker);letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:20px;">ONDE ATUAMOS</div>
         <h2 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-title);color:var(--text);font-weight:700;margin:0 0 56px 0;">Segmentos que Atendemos</h2>
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0;border-top:1px solid var(--border);border-left:1px solid var(--border);">
@@ -309,7 +306,7 @@
     <!-- 09 CONTRATAÇÃO -->
     <section data-section data-screen-label="09 — Contratação" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px var(--pad-x);">
       <div class="reveal" style="opacity:0;transform:translateY(40px);max-width:1500px;margin:0 auto;width:100%;">
-        <div style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-kicker);letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:20px;">COMO CONTRATAR</div>
+        <div class="eyebrow" style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-kicker);letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:20px;">COMO CONTRATAR</div>
         <h2 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-title);color:var(--text);font-weight:700;margin:0 0 56px 0;">Modelos de Contratação</h2>
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;align-items:stretch;">
@@ -333,7 +330,7 @@
     <!-- 10 ROADMAP -->
     <section data-section data-screen-label="10 — Roadmap" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px var(--pad-x);">
       <div class="reveal" style="opacity:0;transform:translateY(40px);max-width:1400px;margin:0 auto;width:100%;">
-        <div style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-kicker);letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:20px;">VISÃO DE FUTURO</div>
+        <div class="eyebrow" style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-kicker);letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:20px;">VISÃO DE FUTURO</div>
         <h2 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-title);color:var(--text);font-weight:700;margin:0 0 56px 0;">Roadmap</h2>
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;border-top:1px solid var(--border);border-left:1px solid var(--border);">
@@ -360,12 +357,14 @@
     <!-- 11 CTA -->
     <section data-section data-screen-label="11 — Contato" style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px var(--pad-x);position:relative;">
       <div class="reveal" style="opacity:0;transform:translateY(40px);max-width:1100px;">
-        <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(38px,6vw,68px);line-height:1.12;color:var(--text);font-weight:700;margin:0 0 48px 0;">
+        <div class="eyebrow" style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.14em;color:var(--accent);font-weight:600;margin-bottom:24px;">PRÓXIMO PASSO</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(38px,6vw,68px);line-height:1.12;color:var(--text);font-weight:700;margin:0 0 40px 0;">
           <span style="display:block;">Vamos construir o próximo</span>
           <span style="display:block;color:var(--text-soft);">capítulo do seu negócio.</span>
         </h2>
-        <a href="https://wa.me/message/Q4RF2PS3UEZQI1" target="_blank" style="display:inline-block;background:var(--invert-bg);color:var(--invert-text);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;padding:20px 50px;border-radius:2px;text-decoration:none;animation:pulseRing 2.6s ease-out infinite;">Solicitar Projeto</a>
-        <div style="margin-top:56px;font-size:17px;color:var(--text-soft);display:flex;gap:36px;align-items:center;justify-content:center;flex-wrap:wrap;">
+        <a href="https://wa.me/message/Q4RF2PS3UEZQI1" target="_blank" style="display:inline-block;background:var(--invert-bg);color:var(--invert-text);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;padding:22px 56px;border-radius:2px;text-decoration:none;animation:pulseRing 2.6s ease-out infinite;">Solicitar Projeto</a>
+        <div style="margin-top:20px;font-family:var(--font-mono);font-size:13px;letter-spacing:0.02em;color:var(--text-faint);">Conversa direta pelo WhatsApp — sem formulário, sem espera.</div>
+        <div style="margin-top:48px;font-size:17px;color:var(--text-soft);display:flex;gap:36px;align-items:center;justify-content:center;flex-wrap:wrap;">
           <a href="https://instagram.com/oficial.gideon" target="_blank" style="color:var(--text-soft);text-decoration:none;display:flex;align-items:center;gap:10px;">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.6" stroke="currentColor" stroke-width="1.6"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor"/></svg>
             <span>Instagram @oficial.gideon</span>
@@ -379,17 +378,6 @@
     </section>
 
   </main>
-</div>
-
-<input type="checkbox" id="__gideon_rotate_dismiss" style="position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;">
-<div id="__gideon_rotate_overlay" role="dialog" aria-label="Sugestão de rotação de tela">
-  <svg class="__gideon_rotate_icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="7" y="2" width="10" height="20" rx="2" stroke="#F5F5F3" stroke-width="1.6"></rect>
-    <line x1="11" y1="18" x2="13" y2="18" stroke="#F5F5F3" stroke-width="1.6" stroke-linecap="round"></line>
-  </svg>
-  <h2>Gire seu celular</h2>
-  <p>Para a experiência completa da apresentação, vire o aparelho na horizontal.</p>
-  <label id="__gideon_rotate_continue" for="__gideon_rotate_dismiss">Continuar mesmo assim</label>
 </div>
 
 </x-dc>
@@ -422,14 +410,14 @@ const THEMES = {
     bg: '#FAFAF8', surface: '#FFFFFF', text: '#121213', textSoft: '#6B6862', textFaint: '#9A968C',
     border: 'rgba(18,18,19,0.10)', borderStrong: 'rgba(18,18,19,0.28)', accent: '#8C7F5E',
     invertBg: '#121213', invertText: '#FAFAF8', ring: 'rgba(18,18,19,0.14)',
-    logoFront: 'assets/images/logo-navy.png', logoBack: 'assets/images/logo-white.png', navLogo: 'assets/images/logo-navy.png',
+    navLogo: 'assets/images/logo-navy.png',
     three: { bg: 0xFAFAF8, ink: 0x121213, inkSoft: 0x6B6862, accent: 0x8C7F5E, particleOpacity: 0.16, wireOpacity: 0.06 },
   },
   dark: {
     bg: '#121213', surface: '#1B1B1D', text: '#F2F0EA', textSoft: '#9A968C', textFaint: '#6B6862',
     border: 'rgba(255,255,255,0.12)', borderStrong: 'rgba(255,255,255,0.35)', accent: '#B8AD8E',
     invertBg: '#F2F0EA', invertText: '#121213', ring: 'rgba(242,240,234,0.18)',
-    logoFront: 'assets/images/logo-white.png', logoBack: 'assets/images/logo-navy.png', navLogo: 'assets/images/logo-white.png',
+    navLogo: 'assets/images/logo-white.png',
     three: { bg: 0x121213, ink: 0xE8E3D6, inkSoft: 0x9A968C, accent: 0xB8AD8E, particleOpacity: 0.3, wireOpacity: 0.16 },
   },
 };
@@ -441,21 +429,20 @@ class Component extends DCLogic {
     this.canvasRef = React.createRef();
     this.progressRef = React.createRef();
     this.navLogoRef = React.createRef();
-    this.logoFrontRef = React.createRef();
-    this.logoBackRef = React.createRef();
     this._raf = null;
     this._three = null;
     this._sections = [];
     this._mouseX = 0;
     this._mouseY = 0;
 
+    // Site sempre abre no tema claro por padrão — só muda para escuro se a
+    // pessoa já escolheu isso explicitamente antes (não segue mais a
+    // preferência de sistema prefers-color-scheme).
     let initialTheme = 'light';
     try {
       const saved = window.localStorage.getItem('gideon-theme');
       if (saved === 'light' || saved === 'dark') {
         initialTheme = saved;
-      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        initialTheme = 'dark';
       }
     } catch (e) {}
     this.state = { theme: initialTheme };
@@ -503,8 +490,6 @@ class Component extends DCLogic {
       root.style.setProperty('--ring', t.ring);
     }
     if (this.navLogoRef.current) this.navLogoRef.current.src = t.navLogo;
-    if (this.logoFrontRef.current) this.logoFrontRef.current.src = t.logoFront;
-    if (this.logoBackRef.current) this.logoBackRef.current.src = t.logoBack;
     this.applyThemeToThree(t.three);
   }
 
@@ -718,23 +703,40 @@ class Component extends DCLogic {
 
     this._three = { renderer, scene, camera, particles, shapes, totalDepth, isAccent, lights: { light1, light2 } };
 
-    const animate = () => {
+    // Camera depth is driven purely by elapsed time (a slow ping-pong journey
+    // through the tunnel), not by scroll position. It previously read
+    // window.scrollY every frame to sync camera dolly with scroll progress,
+    // but that coupling was unreliable across input methods (wheel vs.
+    // keyboard vs. touch could desync or stall depending on browser/OS
+    // scroll-event timing). Decoupling it removes that failure mode
+    // entirely: the background is now a self-contained ambient scene that
+    // always animates smoothly regardless of how (or whether) the visitor
+    // scrolls.
+    const cycleSeconds = 70;
+    const animate = (now) => {
       this._raf = requestAnimationFrame(animate);
-      const doc = document.documentElement;
-      const max = doc.scrollHeight - window.innerHeight;
-      const frac = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      if (this._threeStartTime == null) this._threeStartTime = now || performance.now();
+      const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const elapsed = ((now || performance.now()) - this._threeStartTime) / 1000;
 
-      const targetZ = 6 - frac * totalDepth;
-      camera.position.z += (targetZ - camera.position.z) * 0.08;
+      let targetZ = 6;
+      if (!reducedMotion) {
+        const cyclePos = (elapsed % (cycleSeconds * 2)) / cycleSeconds;
+        const triangleFrac = cyclePos <= 1 ? cyclePos : 2 - cyclePos;
+        targetZ = 6 - triangleFrac * totalDepth;
+      }
+      camera.position.z += (targetZ - camera.position.z) * 0.03;
       camera.position.x += (this._mouseX * 0.5 - camera.position.x) * 0.03;
       camera.position.y += (-this._mouseY * 0.3 - camera.position.y) * 0.03;
       camera.lookAt(0, 0, camera.position.z - 10);
 
-      particles.rotation.z += 0.0002;
-      shapes.forEach(({ mesh, speed }) => {
-        mesh.rotation.x += speed * 0.004;
-        mesh.rotation.y += speed * 0.005;
-      });
+      if (!reducedMotion) {
+        particles.rotation.z += 0.0002;
+        shapes.forEach(({ mesh, speed }) => {
+          mesh.rotation.x += speed * 0.004;
+          mesh.rotation.y += speed * 0.005;
+        });
+      }
 
       renderer.render(scene, camera);
     };
@@ -768,8 +770,6 @@ class Component extends DCLogic {
       canvasRef: this.canvasRef,
       progressRef: this.progressRef,
       navLogoRef: this.navLogoRef,
-      logoFrontRef: this.logoFrontRef,
-      logoBackRef: this.logoBackRef,
       isDark: this.state.theme === 'dark',
       isLight: this.state.theme === 'light',
       toggleTheme: this.toggleTheme,

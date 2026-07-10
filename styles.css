@@ -365,26 +365,86 @@
 /* Variáveis de design e estilos base (tokens de tema definidos inline no
    elemento raiz e alternados via JS — ver THEMES em component.js) */
 :root{
-      --type-hero: clamp(46px, 6vw, 96px);
+      --type-hero: clamp(52px, 7.2vw, 116px);
       --type-title: clamp(34px, 4.2vw, 56px);
-      --type-kicker: clamp(13px, 1vw, 17px);
+      --type-kicker: clamp(12px, 0.95vw, 14px);
       --type-body: clamp(17px, 1.6vw, 23px);
       --type-small: clamp(14px, 1.2vw, 18px);
       --pad-x: clamp(32px, 6vw, 120px);
+      --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono", Consolas, monospace;
     }
     *{box-sizing:border-box;}
     body{margin:0;}
     ::selection{background:var(--text);color:var(--bg);}
-    @keyframes spin3d{ from{ transform: rotateY(0deg) rotateX(4deg);} to{ transform: rotateY(360deg) rotateX(4deg);} }
-    @keyframes floatY{ 0%,100%{ transform:translateY(0px);} 50%{ transform:translateY(-16px);} }
     @keyframes arrowBounce{ 0%,100%{ transform:translateY(0);opacity:0.45;} 50%{ transform:translateY(9px);opacity:1;} }
     @keyframes pulseRing{ 0%{ box-shadow:0 0 0 0 var(--ring);} 100%{ box-shadow:0 0 0 22px rgba(0,0,0,0);} }
     @font-face{ font-family:'Space Grotesk'; src:local('Space Grotesk'); }
 
+/* ============================================================
+   Camada "instrumento de precisão" — o diferencial da Gideon é
+   ser software house que também entende de infraestrutura física
+   (cabo, switch, servidor). A tipografia mono + marcas de canto +
+   grão sutil emprestam essa linguagem de desenho técnico/schematic
+   ao invés de um visual genérico de SaaS.
+   ============================================================ */
+
+/* Grão sutil sobre toda a página — dá textura tátil sem pesar */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.025;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* Marcas de canto estilo desenho técnico — usadas nos cards (.tilt) */
+.tilt {
+  position: relative;
+}
+.tilt::before,
+.tilt::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.tilt::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1.5px solid var(--accent);
+  border-left: 1.5px solid var(--accent);
+}
+.tilt::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1.5px solid var(--accent);
+  border-right: 1.5px solid var(--accent);
+}
+.tilt:hover::before,
+.tilt:hover::after {
+  opacity: 1;
+}
+
+/* Rótulos técnicos (kickers) em monoespaçada, com marca de tick —
+   reforça a leitura de "ficha técnica" ao invés de rótulo decorativo */
+.eyebrow {
+  font-family: var(--font-mono) !important;
+  text-transform: uppercase;
+}
+.eyebrow::before {
+  content: "▸ ";
+  color: var(--accent);
+}
+
 /* Reforço de interação mobile */
 html, body {
     max-width: 100%;
-    overflow-x: hidden;
     touch-action: pan-y;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
@@ -424,64 +484,6 @@ html, body {
     .reveal { opacity: 1 !important; transform: none !important; }
   }
 
-/* Overlay "gire seu celular" */
-#__gideon_rotate_overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 2147483647;
-    background: #0A0A0A;
-    color: #F5F5F3;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 32px;
-    font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
-  }
-  @media (max-width: 900px) and (pointer: coarse) and (orientation: portrait) {
-    #__gideon_rotate_overlay {
-      display: flex;
-    }
-  }
-  #__gideon_rotate_dismiss:checked ~ #__gideon_rotate_overlay {
-    display: none !important;
-  }
-  #__gideon_rotate_overlay .__gideon_rotate_icon {
-    width: 64px;
-    height: 64px;
-    margin-bottom: 24px;
-    animation: __gideon_rotate_spin 1.8s ease-in-out infinite;
-    transform-origin: center;
-  }
-  @keyframes __gideon_rotate_spin {
-    0% { transform: rotate(0deg); }
-    50% { transform: rotate(-90deg); }
-    100% { transform: rotate(-90deg); }
-  }
-  #__gideon_rotate_overlay h2 {
-    font-size: 20px;
-    font-weight: 700;
-    margin: 0 0 10px 0;
-  }
-  #__gideon_rotate_overlay p {
-    font-size: 14px;
-    color: #B8B8B4;
-    max-width: 320px;
-    margin: 0 0 28px 0;
-    line-height: 1.5;
-  }
-  #__gideon_rotate_continue {
-    display: inline-block;
-    background: transparent;
-    border: 1px solid #B8B8B4;
-    color: #F5F5F3;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 12px 24px;
-    border-radius: 999px;
-    cursor: pointer;
-  }
 
 /* Botão flutuante de contato (WhatsApp / Instagram) e CTA "Solicitar Projeto" */
 #__gideon_cta {
@@ -554,3 +556,112 @@ html, body {
     #__gideon_cta { top: 12px; right: 12px; padding: 8px 14px; font-size: 13px; }
     #__gideon_fab_wrap { bottom: 16px; right: 16px; }
   }
+
+/* Botão de alternar tema — empilhado abaixo do CTA "Solicitar Projeto" para
+   nunca sobrepor (o CTA usa z-index muito mais alto e ocupa o canto
+   superior direito primeiro). */
+.theme-toggle {
+  top: 76px;
+  right: 20px;
+}
+@media (max-width: 480px) {
+  .theme-toggle {
+    top: 58px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* ============================================================
+   Otimização mobile vertical
+   ============================================================ */
+@media (max-width: 760px) {
+  :root {
+    --pad-x: 20px;
+  }
+
+  /* Cabeçalho: wordmark compacto, sem sobrepor o CTA/tema no canto oposto */
+  .nav-logo {
+    top: 16px !important;
+    gap: 10px !important;
+  }
+  .nav-logo img { width: 24px !important; }
+  .nav-logo span { font-size: 15px !important; }
+
+  #__gideon_cta {
+    top: 14px !important;
+  }
+  .theme-toggle {
+    top: 56px !important;
+  }
+
+  /* Bolinhas de navegação lateral: escondidas no mobile — a barra de
+     progresso no topo já dá a mesma informação, e nesse espaço elas
+     ficam apertadas contra o conteúdo. */
+  .nav-dots {
+    display: none !important;
+  }
+
+  /* Hero: empilha texto acima do emblema 3D, com o emblema bem menor,
+     e reduz o respiro vertical para caber mais conteúdo útil na dobra.
+     Seletor section[data-section].hero-section (em vez de só .hero-section)
+     para vencer em especificidade a regra genérica "section[data-section]"
+     mais abaixo — mesma especificidade perderia por ordem de aparição. */
+  section[data-section].hero-section {
+    padding: 96px 20px 40px !important;
+    gap: 32px !important;
+  }
+  .hero-flex {
+    flex-wrap: wrap !important;
+    gap: 28px !important;
+    justify-content: center !important;
+  }
+  .hero-copy {
+    flex: 1 1 100% !important;
+    text-align: center !important;
+  }
+  .hero-copy > div:first-child {
+    justify-content: center;
+    display: flex;
+  }
+  .hero-copy p {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .hero-scrollcue {
+    display: none !important;
+  }
+
+  /* Todas as seções: menos espaço vazio vertical, texto centralizado
+     não forçado (mantém o padrão de cada seção) mas com respiro mais
+     enxuto para reduzir a rolagem total no celular. */
+  section[data-section] {
+    padding-top: 64px !important;
+    padding-bottom: 64px !important;
+    min-height: auto !important;
+  }
+
+  /* Grids de cards: 1 coluna confortável, sem depender de auto-fit
+     encontrar espaço (minmax largo demais forçava overflow em telas
+     bem estreitas, ex. 320-360px). */
+  main [style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Card "Retainer" com scale(1.03): em telas estreitas o leve zoom
+     empurra a borda pra fora da viewport — remove o scale no mobile. */
+  main [style*="scale(1.03)"] {
+    transform: none !important;
+  }
+}
+
+/* Movimento respeita a preferência de sistema por menos animação */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
