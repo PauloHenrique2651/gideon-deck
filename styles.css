@@ -362,30 +362,23 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* Variáveis de design e estilos base */
+/* Variáveis de design e estilos base (tokens de tema definidos inline no
+   elemento raiz e alternados via JS — ver THEMES em component.js) */
 :root{
-      --navy-900:#0A0A0B;
-      --navy-800:#121213;
-      --navy-700:#1B1B1D;
-      --navy-600:#242426;
-      --gold:#B8AD8E;
-      --gold-light:#E8E3D6;
-      --white:#F2F0EA;
-      --mist:#9A968C;
-      --type-hero: clamp(48px, 6.5vw, 104px);
-      --type-title: clamp(36px, 4.5vw, 60px);
-      --type-kicker: clamp(14px, 1.1vw, 19px);
-      --type-body: clamp(18px, 1.8vw, 25px);
-      --type-small: clamp(15px, 1.3vw, 19px);
+      --type-hero: clamp(46px, 6vw, 96px);
+      --type-title: clamp(34px, 4.2vw, 56px);
+      --type-kicker: clamp(13px, 1vw, 17px);
+      --type-body: clamp(17px, 1.6vw, 23px);
+      --type-small: clamp(14px, 1.2vw, 18px);
       --pad-x: clamp(32px, 6vw, 120px);
     }
     *{box-sizing:border-box;}
-    body{margin:0;background:var(--navy-800);}
-    ::selection{background:var(--gold);color:var(--navy-900);}
-    @keyframes spin3d{ from{ transform: rotateY(0deg) rotateX(8deg);} to{ transform: rotateY(360deg) rotateX(8deg);} }
-    @keyframes floatY{ 0%,100%{ transform:translateY(0px);} 50%{ transform:translateY(-18px);} }
-    @keyframes arrowBounce{ 0%,100%{ transform:translateY(0);opacity:0.5;} 50%{ transform:translateY(10px);opacity:1;} }
-    @keyframes pulseRing{ 0%{ box-shadow:0 0 0 0 rgba(242,240,234,0.35);} 100%{ box-shadow:0 0 0 22px rgba(242,240,234,0);} }
+    body{margin:0;}
+    ::selection{background:var(--text);color:var(--bg);}
+    @keyframes spin3d{ from{ transform: rotateY(0deg) rotateX(4deg);} to{ transform: rotateY(360deg) rotateX(4deg);} }
+    @keyframes floatY{ 0%,100%{ transform:translateY(0px);} 50%{ transform:translateY(-16px);} }
+    @keyframes arrowBounce{ 0%,100%{ transform:translateY(0);opacity:0.45;} 50%{ transform:translateY(9px);opacity:1;} }
+    @keyframes pulseRing{ 0%{ box-shadow:0 0 0 0 var(--ring);} 100%{ box-shadow:0 0 0 22px rgba(0,0,0,0);} }
     @font-face{ font-family:'Space Grotesk'; src:local('Space Grotesk'); }
 
 /* Reforço de interação mobile */
