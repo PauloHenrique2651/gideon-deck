@@ -17,7 +17,7 @@
 <body>
 <x-dc>
 
-<div ref="{{ rootRef }}" style="position:relative;background:var(--bg);font-family:'Inter',sans-serif;--bg:#FAFAF8;--surface:#FFFFFF;--text:#121213;--text-soft:#6B6862;--text-faint:#9A968C;--border:rgba(18,18,19,0.10);--border-strong:rgba(18,18,19,0.28);--accent:#8C7F5E;--invert-bg:#121213;--invert-text:#FAFAF8;--ring:rgba(18,18,19,0.14);transition:background 0.4s ease;">
+<div ref="{{ rootRef }}" style="position:relative;background:var(--bg);font-family:'Inter',sans-serif;--bg:#FAFAF8;--surface:#FFFFFF;--text:#14181F;--text-soft:#5B6472;--text-faint:#93A0AF;--border:rgba(20,24,31,0.10);--border-strong:rgba(20,24,31,0.26);--accent:#1C3458;--invert-bg:#1C3458;--invert-text:#F7F6F2;--ring:rgba(28,52,88,0.18);transition:background 0.4s ease;">
 
   <canvas ref="{{ canvasRef }}" style="position:fixed;top:0;left:0;width:100vw;height:100vh;display:block;z-index:0;"></canvas>
 
@@ -60,27 +60,20 @@
     <section data-section data-screen-label="01 — Capa" class="hero-section" style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:56px;text-align:center;padding:120px var(--pad-x) 64px;">
       <div class="hero-flex" style="display:flex;justify-content:center;max-width:1500px;width:100%;">
         <div class="reveal hero-copy" style="max-width:760px;min-width:0;text-align:left;opacity:0;transform:translateY(40px);">
-          <div style="display:inline-flex;align-items:center;gap:9px;font-family:var(--font-mono);font-size:12px;letter-spacing:0.04em;color:var(--text-soft);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:7px 14px 7px 12px;margin-bottom:24px;">
-            <span style="width:7px;height:7px;border-radius:50%;background:#4CAF6D;flex-shrink:0;animation:pulseDot 2s ease-in-out infinite;"></span>
-            DISPONÍVEL PARA NOVOS PROJETOS
-          </div>
-          <div class="eyebrow" style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-kicker);letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:28px;">SOFTWARE HOUSE&nbsp;&nbsp;•&nbsp;&nbsp;INFRAESTRUTURA DE TI</div>
-          <h1 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-hero);line-height:1.04;color:var(--text);font-weight:700;margin:0 0 32px 0;">
+          <div class="eyebrow" style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-kicker);letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:24px;">SOFTWARE HOUSE&nbsp;&nbsp;•&nbsp;&nbsp;INFRAESTRUTURA DE TI</div>
+          <h1 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-hero);line-height:1.04;color:var(--text);font-weight:700;margin:0 0 32px 0;letter-spacing:-0.01em;">
             <span style="display:block;">Inteligência de software</span>
             <span style="display:block;color:var(--text-soft);">que impulsiona negócios.</span>
           </h1>
-          <p style="font-size:var(--type-body);line-height:1.5;color:var(--text-soft);max-width:640px;margin:0 0 40px 0;">
+          <p style="font-size:var(--type-body);line-height:1.5;color:var(--text-soft);max-width:640px;margin:0 0 44px 0;">
             Desenvolvemos sistemas, ERPs, CRMs, IA e plataformas sob medida —
             com a mesma precisão que aplicamos em cada linha de infraestrutura.
           </p>
-          <div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:40px;">
-            <a href="https://wa.me/message/Q4RF2PS3UEZQI1" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:var(--invert-bg);color:var(--invert-text);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;padding:16px 30px;border-radius:2px;text-decoration:none;">Solicitar Projeto<span aria-hidden="true">→</span></a>
-            <button onClick="{{ goTo5 }}" style="all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:10px;color:var(--text);font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;padding:16px 8px;border-bottom:1px solid var(--border-strong);">Ver diferenciais</button>
-          </div>
+          <a href="https://wa.me/message/Q4RF2PS3UEZQI1" target="_blank" style="display:inline-flex;align-items:center;gap:10px;background:var(--invert-bg);color:var(--invert-text);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;padding:17px 32px;border-radius:2px;text-decoration:none;margin-bottom:44px;">Solicitar Projeto<span aria-hidden="true">→</span></a>
           <div style="display:flex;flex-wrap:wrap;gap:28px;padding-top:24px;border-top:1px solid var(--border);">
-            <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.06em;color:var(--text-soft);"><span style="color:var(--accent);">▪</span>&nbsp; SOB MEDIDA</span>
-            <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.06em;color:var(--text-soft);"><span style="color:var(--accent);">▪</span>&nbsp; FULL-STACK</span>
-            <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.06em;color:var(--text-soft);"><span style="color:var(--accent);">▪</span>&nbsp; ENTREGA ÁGIL</span>
+            <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.06em;color:var(--text-soft);">SOB MEDIDA</span>
+            <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.06em;color:var(--text-soft);">FULL-STACK</span>
+            <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.06em;color:var(--text-soft);">ENTREGA ÁGIL</span>
           </div>
         </div>
       </div>
@@ -89,18 +82,6 @@
         <svg width="20" height="26" viewBox="0 0 20 26" style="color:var(--text);animation:arrowBounce 1.8s ease-in-out infinite;"><path d="M10 0 L10 22 M2 14 L10 22 L18 14" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
     </section>
-
-    <!-- MARQUEE de serviços -->
-    <div class="marquee" aria-hidden="true" style="position:relative;z-index:10;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);padding:18px 0;">
-      <div class="marquee-track" style="display:flex;width:max-content;">
-        <span class="marquee-set" style="display:flex;align-items:center;flex-shrink:0;">
-          <span class="marquee-item">SISTEMAS SOB MEDIDA</span><span class="marquee-item">ERPs</span><span class="marquee-item">CRMs</span><span class="marquee-item">INTELIGÊNCIA ARTIFICIAL</span><span class="marquee-item">INFRAESTRUTURA DE TI</span><span class="marquee-item">REDES &amp; SERVIDORES</span><span class="marquee-item">LANDING PAGES</span><span class="marquee-item">SUPORTE TÉCNICO</span><span class="marquee-item">CONSULTORIA EM TI</span><span class="marquee-item">SEGURANÇA &amp; LGPD</span><span class="marquee-item">CLOUD</span>
-        </span>
-        <span class="marquee-set" style="display:flex;align-items:center;flex-shrink:0;">
-          <span class="marquee-item">SISTEMAS SOB MEDIDA</span><span class="marquee-item">ERPs</span><span class="marquee-item">CRMs</span><span class="marquee-item">INTELIGÊNCIA ARTIFICIAL</span><span class="marquee-item">INFRAESTRUTURA DE TI</span><span class="marquee-item">REDES &amp; SERVIDORES</span><span class="marquee-item">LANDING PAGES</span><span class="marquee-item">SUPORTE TÉCNICO</span><span class="marquee-item">CONSULTORIA EM TI</span><span class="marquee-item">SEGURANÇA &amp; LGPD</span><span class="marquee-item">CLOUD</span>
-        </span>
-      </div>
-    </div>
 
     <!-- 02 SUMÁRIO -->
     <section data-section data-screen-label="02 — Sumário" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px var(--pad-x);">
@@ -409,22 +390,24 @@
       </div>
     </section>
 
-    <!-- 12 CTA -->
-    <section data-section data-screen-label="12 — Contato" style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px var(--pad-x);position:relative;">
+    <!-- 12 CTA — único momento de cor sólida da página: navy da marca,
+         deliberadamente fora do sistema claro/escuro, pra fechar com
+         confiança em vez de mais um card cinza. -->
+    <section data-section data-screen-label="12 — Contato" style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px var(--pad-x);position:relative;background:#1C3458;">
       <div class="reveal" style="opacity:0;transform:translateY(40px);max-width:1100px;">
-        <div class="eyebrow" style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.14em;color:var(--accent);font-weight:600;margin-bottom:24px;">PRÓXIMO PASSO</div>
-        <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(38px,6vw,68px);line-height:1.12;color:var(--text);font-weight:700;margin:0 0 40px 0;">
+        <div class="eyebrow" style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.14em;color:#93A8CC;font-weight:600;margin-bottom:24px;">PRÓXIMO PASSO</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(38px,6vw,68px);line-height:1.12;color:#F7F6F2;font-weight:700;margin:0 0 40px 0;">
           <span style="display:block;">Vamos construir o próximo</span>
-          <span style="display:block;color:var(--text-soft);">capítulo do seu negócio.</span>
+          <span style="display:block;color:#93A8CC;">capítulo do seu negócio.</span>
         </h2>
-        <a href="https://wa.me/message/Q4RF2PS3UEZQI1" target="_blank" style="display:inline-block;background:var(--invert-bg);color:var(--invert-text);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;padding:22px 56px;border-radius:2px;text-decoration:none;animation:pulseRing 2.6s ease-out infinite;">Solicitar Projeto</a>
-        <div style="margin-top:20px;font-family:var(--font-mono);font-size:13px;letter-spacing:0.02em;color:var(--text-faint);">Conversa direta pelo WhatsApp — sem formulário, sem espera.</div>
-        <div style="margin-top:48px;font-size:17px;color:var(--text-soft);display:flex;gap:36px;align-items:center;justify-content:center;flex-wrap:wrap;">
-          <a href="https://instagram.com/oficial.gideon" target="_blank" style="color:var(--text-soft);text-decoration:none;display:flex;align-items:center;gap:10px;">
+        <a href="https://wa.me/message/Q4RF2PS3UEZQI1" target="_blank" style="display:inline-block;background:#F7F6F2;color:#1C3458;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;padding:22px 56px;border-radius:2px;text-decoration:none;">Solicitar Projeto</a>
+        <div style="margin-top:20px;font-family:var(--font-mono);font-size:13px;letter-spacing:0.02em;color:#93A8CC;">Conversa direta pelo WhatsApp — sem formulário, sem espera.</div>
+        <div style="margin-top:48px;font-size:17px;color:#93A8CC;display:flex;gap:36px;align-items:center;justify-content:center;flex-wrap:wrap;">
+          <a href="https://instagram.com/oficial.gideon" target="_blank" style="color:#93A8CC;text-decoration:none;display:flex;align-items:center;gap:10px;">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.6" stroke="currentColor" stroke-width="1.6"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor"/></svg>
             <span>Instagram @oficial.gideon</span>
           </a>
-          <a href="https://wa.me/message/Q4RF2PS3UEZQI1" target="_blank" style="color:var(--text-soft);text-decoration:none;display:flex;align-items:center;gap:10px;">
+          <a href="https://wa.me/message/Q4RF2PS3UEZQI1" target="_blank" style="color:#93A8CC;text-decoration:none;display:flex;align-items:center;gap:10px;">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2.5c-5.25 0-9.5 4.25-9.5 9.5 0 1.72.46 3.33 1.26 4.72L2.5 21.5l4.94-1.24A9.44 9.44 0 0 0 12 21.5c5.25 0 9.5-4.25 9.5-9.5S17.25 2.5 12 2.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.3 8.6c.15-.5.6-.5.95-.5h.5c.28 0 .5.1.6.4l.7 1.7c.1.25.05.5-.1.7l-.5.65c-.1.15-.1.3-.02.45.4.75 1.55 1.95 2.35 2.35.15.08.3.08.45-.02l.65-.5c.2-.15.45-.2.7-.1l1.7.7c.3.1.4.32.4.6v.5c0 .35 0 .8-.5.95-.65.2-1.65.3-3.3-.4-1.75-.75-3.35-2.3-4.1-4.1-.7-1.65-.6-2.65-.4-3.3Z" fill="currentColor"/></svg>
             <span>WhatsApp (21) 99106-0165</span>
           </a>
@@ -460,20 +443,24 @@
 </button>
 
 <script type="text/x-dc" data-dc-script="">
+// Paleta derivada da cor real da marca (extraída do logo: #1C3458, navy),
+// não de um dourado genérico de "site premium". Navy é também a escolha
+// certa pro setor: infraestrutura/tecnologia B2B lê confiança em azul
+// profundo, não em tons quentes de luxo genérico.
 const THEMES = {
   light: {
-    bg: '#FAFAF8', surface: '#FFFFFF', text: '#121213', textSoft: '#6B6862', textFaint: '#9A968C',
-    border: 'rgba(18,18,19,0.10)', borderStrong: 'rgba(18,18,19,0.28)', accent: '#8C7F5E',
-    invertBg: '#121213', invertText: '#FAFAF8', ring: 'rgba(18,18,19,0.14)',
+    bg: '#FAFAF8', surface: '#FFFFFF', text: '#14181F', textSoft: '#5B6472', textFaint: '#93A0AF',
+    border: 'rgba(20,24,31,0.10)', borderStrong: 'rgba(20,24,31,0.26)', accent: '#1C3458',
+    invertBg: '#1C3458', invertText: '#F7F6F2', ring: 'rgba(28,52,88,0.18)',
     navLogo: 'assets/images/logo-navy.png',
-    three: { bg: 0xFAFAF8, ink: 0x121213, inkSoft: 0x6B6862, accent: 0x8C7F5E, particleOpacity: 0.16, wireOpacity: 0.06 },
+    three: { bg: 0xFAFAF8, ink: 0x14181F, inkSoft: 0x5B6472, accent: 0x1C3458, particleOpacity: 0.14, wireOpacity: 0.05 },
   },
   dark: {
-    bg: '#121213', surface: '#1B1B1D', text: '#F2F0EA', textSoft: '#9A968C', textFaint: '#6B6862',
-    border: 'rgba(255,255,255,0.12)', borderStrong: 'rgba(255,255,255,0.35)', accent: '#B8AD8E',
-    invertBg: '#F2F0EA', invertText: '#121213', ring: 'rgba(242,240,234,0.18)',
+    bg: '#0E1116', surface: '#171B22', text: '#F2F1ED', textSoft: '#9BA5B4', textFaint: '#626D7C',
+    border: 'rgba(255,255,255,0.10)', borderStrong: 'rgba(255,255,255,0.24)', accent: '#6E93C4',
+    invertBg: '#F2F1ED', invertText: '#0E1116', ring: 'rgba(110,147,196,0.22)',
     navLogo: 'assets/images/logo-white.png',
-    three: { bg: 0x121213, ink: 0xE8E3D6, inkSoft: 0x9A968C, accent: 0xB8AD8E, particleOpacity: 0.3, wireOpacity: 0.16 },
+    three: { bg: 0x0E1116, ink: 0xF2F1ED, inkSoft: 0x9BA5B4, accent: 0x6E93C4, particleOpacity: 0.26, wireOpacity: 0.12 },
   },
 };
 
