@@ -25,6 +25,34 @@
     location.href = event.target.value;
   });
 
+  const heroVideo = document.querySelector('[data-hero-video]');
+  const hero = document.querySelector('.homepage-hero');
+  if (heroVideo && hero) {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let duration = 0;
+    let scheduled = false;
+    let lastTime = -1;
+    const updateFrame = () => {
+      scheduled = false;
+      if (!duration || reducedMotion) return;
+      const range = Math.max(window.innerHeight, hero.offsetHeight);
+      const progress = .18 + (.82 * Math.min(1, Math.max(0, window.scrollY / range)));
+      const nextTime = Math.min(duration - .05, progress * Math.max(duration - .05, 0));
+      if (Math.abs(nextTime - lastTime) > .04) {
+        lastTime = nextTime;
+        heroVideo.currentTime = nextTime;
+      }
+    };
+    heroVideo.addEventListener('loadedmetadata', () => {
+      duration = heroVideo.duration;
+      hero.classList.add('has-motion');
+      updateFrame();
+    }, { once: true });
+    if (!reducedMotion) window.addEventListener('scroll', () => {
+      if (!scheduled) { scheduled = true; requestAnimationFrame(updateFrame); }
+    }, { passive: true });
+  }
+
   const navigator = document.querySelector('[data-solution-navigator]');
   if (navigator) {
     const options = [...navigator.querySelectorAll('[data-navigator-option]')];

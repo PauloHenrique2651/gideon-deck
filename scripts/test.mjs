@@ -34,6 +34,8 @@ for (const [lang, prefix] of languages) {
     if (page.kind === 'home') {
       assert.ok(html.includes('data-solution-navigator'), `${file}: solution navigator`);
       assert.ok(html.includes('data-navigator-option'), `${file}: navigator options`);
+      assert.ok(html.includes('data-hero-video'), `${file}: motion hero`);
+      assert.ok(html.includes('/assets/video/gideon-systems.mp4'), `${file}: Gideon video`);
     }
     assert.ok(!html.includes('@@@'), `${file}: unresolved translation marker`);
     if (page.noindex) assert.ok(html.includes('content="noindex,follow"'), `${file}: noindex`);
@@ -68,7 +70,10 @@ const robots = await readFile(join(root,'robots.txt'),'utf8');
 assert.ok(robots.includes(`Sitemap: ${origin}/sitemap.xml`));
 const analytics = await readFile(join(root,'analytics.js'),'utf8');
 const interactions = await readFile(join(root,'service.js'),'utf8');
+assert.ok((await stat(join(root,'assets','video','gideon-systems.mp4')).catch(() => ({size:0}))).size > 0, 'Missing Gideon hero video');
+assert.ok((await stat(join(root,'assets','images','gideon-systems-poster.jpg')).catch(() => ({size:0}))).size > 0, 'Missing Gideon hero poster');
 assert.ok(interactions.includes('data-solution-navigator'), 'Missing solution navigator interaction');
+assert.ok(interactions.includes('data-hero-video'), 'Missing motion hero interaction');
 assert.ok(analytics.includes('G-EYX6409C61'));
 for (const event of ['service_view','case_view','cta_click','quote_request','whatsapp_click','contact','form_start','form_submit','generate_lead']) assert.ok(analytics.includes(`'${event}'`), `Missing analytics event: ${event}`);
 const png = await readFile(join(root,'assets','images','og-gideon.png'));
