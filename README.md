@@ -1,58 +1,56 @@
-# Gideon Deck
+# Gideon Systems
 
-Deck estático (HTML autocontido) pronto para deploy.
+Site institucional e comercial estático da Gideon Systems. A arquitetura gera páginas de serviço e versões localizadas sem depender de JavaScript para indexação.
 
-## 1. Subir para o GitHub
-
-Dentro desta pasta, rode:
+## Desenvolvimento
 
 ```bash
-git init
-git config user.email "paulohenrique.cardoso2651@gmail.com"
-git config user.name "Paulo Henrique Cardoso"
-
-git add .
-git commit -m "Primeira versão do Gideon deck"
-
-# Crie o repositório vazio antes em https://github.com/new
-# (ex: nome "gideon-deck", sem README/gitignore automáticos)
-
-git branch -M main
-git remote add origin https://github.com/SEU_USUARIO/gideon-deck.git
-git push -u origin main
+npm run build
+npm test
 ```
 
-Troque `SEU_USUARIO` pelo seu usuário do GitHub e `gideon-deck` pelo nome
-que você der ao repositório.
+- `content/pages.mjs`: conteúdo original em português do Brasil.
+- `content/translations/*.json`: traduções estáticas usadas no build.
+- `scripts/build.mjs`: gera páginas, canonicals, `hreflang` e sitemap.
+- `scripts/test.mjs`: valida metadata, H1, schemas, links internos e sitemap.
+- `service.css`: sistema visual responsivo das páginas.
+- `analytics.js`: GA4 e eventos de conversão, carregados somente em produção.
 
-Se pedir login, use um Personal Access Token no lugar da senha
-(GitHub não aceita mais senha comum via HTTPS):
-Settings → Developer settings → Personal access tokens → Generate new token.
+O deploy na Vercel usa HTML estático. `vercel.json` remove `.html`, padroniza URLs sem barra final e redireciona o domínio raiz para `https://www.gideonsystems.com.br`.
 
-## 2. Conectar no Vercel
+## SEO e Search Console
 
-1. Acesse https://vercel.com/new
-2. Clique em "Import Git Repository"
-3. Autorize o Vercel a acessar sua conta GitHub (se for a primeira vez)
-4. Selecione o repositório `gideon-deck`
-5. Framework preset: **Other** (é HTML puro, sem build step)
-6. Build command: deixe em branco
-7. Output directory: deixe em branco (raiz do projeto)
-8. Clique em **Deploy**
+- Sitemap: `https://www.gideonsystems.com.br/sitemap.xml`
+- Robots: `https://www.gideonsystems.com.br/robots.txt`
+- Domínio canônico: `https://www.gideonsystems.com.br`
+- Idioma padrão: `pt-BR`
 
-Em ~30 segundos você recebe uma URL tipo `gideon-deck.vercel.app`.
-Todo novo `git push` na branch `main` gera um novo deploy automaticamente.
+Para verificar o Search Console, adicione o token real como meta tag no `<head>` gerado em `scripts/build.mjs` ou faça a verificação por DNS. Não há token no repositório atualmente.
 
-## Observação sobre mobile
+Após o deploy:
 
-Testei a interatividade e encontrei 3 pontos que valem correção antes de
-divulgar o link em celular:
+1. confirme o redirecionamento do domínio raiz para `www` nas configurações de domínio da Vercel;
+2. cadastre a propriedade no Google Search Console;
+3. envie `/sitemap.xml`;
+4. valide o GA4 `G-EYX6409C61` em produção;
+5. revise as traduções com falantes nativos antes de campanhas internacionais.
 
-1. Sem media queries — larguras fixas de até 1500px podem causar overflow
-   horizontal em telas pequenas.
-2. Bolinhas de navegação de 10x10px — abaixo do tamanho mínimo recomendado
-   de toque (44x44px).
-3. Efeito de "tilt" nos cards não reseta em touch (só reseta com
-   `pointerleave`, que nem sempre dispara ao soltar o dedo).
+## Analytics
 
-Posso preparar uma versão corrigida depois do primeiro deploy, se quiser.
+Eventos instalados:
+
+- `service_view`
+- `case_view` (preparado para cases publicados)
+- `cta_click`
+- `quote_request`
+- `whatsapp_click`
+- `contact`
+- `form_start`
+- `form_submit`
+- `generate_lead`
+
+Não existe formulário conectado a um backend neste projeto. Quando um formulário for implementado, chame `window.gideonTrackSuccessfulForm(formId)` somente após o servidor confirmar o envio. Assim, `form_submit` e `generate_lead` não registram falhas como leads.
+
+## Conteúdo pendente
+
+As páginas `/cases` e `/blog` estão em `noindex` até receberem material factual e completo. O case Grupo Maxcompany não foi publicado porque o repositório não contém informações confirmadas sobre problema, solução, tecnologias ou resultados.

@@ -1,0 +1,10 @@
+{
+  "name": "gideon-systems-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node scripts/test.mjs",
+    "check": "npm run build && npm test"
+  }
+}

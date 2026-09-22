@@ -1,0 +1,4 @@
+.playwright-cli/
+output/
+output-lighthouse.json
+node_modules/
