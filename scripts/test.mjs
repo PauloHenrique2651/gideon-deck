@@ -31,6 +31,10 @@ for (const [lang, prefix] of languages) {
     assert.ok(html.includes(`<link rel="canonical" href="${expectedCanonical}">`), `${file}: canonical`);
     assert.ok(html.includes('og:image') && html.includes('twitter:card'), `${file}: social metadata`);
     assert.ok(html.includes('https://wa.me/5521991060165?text='), `${file}: contextual WhatsApp`);
+    if (page.kind === 'home') {
+      assert.ok(html.includes('data-solution-navigator'), `${file}: solution navigator`);
+      assert.ok(html.includes('data-navigator-option'), `${file}: navigator options`);
+    }
     assert.ok(!html.includes('@@@'), `${file}: unresolved translation marker`);
     if (page.noindex) assert.ok(html.includes('content="noindex,follow"'), `${file}: noindex`);
     else {
@@ -63,6 +67,8 @@ assert.ok(!sitemap.includes('/cases<') && !sitemap.includes('/blog<'), 'Noindex 
 const robots = await readFile(join(root,'robots.txt'),'utf8');
 assert.ok(robots.includes(`Sitemap: ${origin}/sitemap.xml`));
 const analytics = await readFile(join(root,'analytics.js'),'utf8');
+const interactions = await readFile(join(root,'service.js'),'utf8');
+assert.ok(interactions.includes('data-solution-navigator'), 'Missing solution navigator interaction');
 assert.ok(analytics.includes('G-EYX6409C61'));
 for (const event of ['service_view','case_view','cta_click','quote_request','whatsapp_click','contact','form_start','form_submit','generate_lead']) assert.ok(analytics.includes(`'${event}'`), `Missing analytics event: ${event}`);
 const png = await readFile(join(root,'assets','images','og-gideon.png'));

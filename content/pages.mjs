@@ -232,6 +232,33 @@ export const servicePages = [
   }
 ];
 
+export const homeNavigator = {
+  kicker: 'Encontre o ponto de partida do seu projeto',
+  title: 'Escolha o desafio que hoje mais limita sua operação',
+  text: 'Veja como uma solução sob medida pode organizar o trabalho da sua equipe e abrir uma conversa objetiva com a Gideon.',
+  cta: 'Conhecer esta solução',
+  options: [
+    {
+      slug: 'crm-sob-medida',
+      label: 'CRM',
+      title: 'Mais clareza para vender e acompanhar cada oportunidade',
+      text: 'Organize leads, propostas e próximos passos em um processo que faz sentido para a sua equipe comercial.'
+    },
+    {
+      slug: 'erp-sob-medida',
+      label: 'ERP',
+      title: 'Uma operação conectada, da venda ao financeiro',
+      text: 'Reúna as áreas e informações que hoje dependem de ferramentas separadas e retrabalho manual.'
+    },
+    {
+      slug: 'automacao-de-processos',
+      label: 'Automações',
+      title: 'Menos tarefas repetitivas, mais tempo para a operação avançar',
+      text: 'Conecte sistemas e acione fluxos que reduzem etapas manuais sem perder o controle do processo.'
+    }
+  ]
+};
+
 export const sitePages = [
   {
     slug: '', kind: 'home', title: 'Software Sob Medida para Empresas | Gideon Systems',

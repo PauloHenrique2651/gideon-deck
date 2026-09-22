@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { servicePages, sitePages } from '../content/pages.mjs';
+import { homeNavigator, servicePages, sitePages } from '../content/pages.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const origin = 'https://www.gideonsystems.com.br';
@@ -28,7 +28,8 @@ const ui = {
   whatsappMessage: 'Olá, vim pelo site da Gideon Systems e gostaria de conversar sobre este projeto:',
   categories: 'ERP · CRM · Automação · Integrações · IA · Tecnologia empresarial',
   pending: 'A publicação de cases e artigos depende de documentação e revisão editorial.',
-  navigation: 'Navegação principal', menu: 'Abrir menu', skip: 'Ir para o conteúdo'
+  navigation: 'Navegação principal', menu: 'Abrir menu', skip: 'Ir para o conteúdo',
+  navigatorLabel: 'Navegador de soluções', navigatorOptions: 'Soluções para explorar'
 };
 
 const allPages = [...sitePages, ...servicePages.map(page => ({...page, kind: 'service'}))];
@@ -102,10 +103,15 @@ async function run() {
         );
       }
       const serviceGrid = `<div class="service-grid">${servicePages.map((item,i) => `<a class="service-card" href="${link(item.slug,lang)}"><span class="service-number">${String(i+1).padStart(2,'0')}</span><h3>${esc(t(item.h1,lang))}</h3><p>${esc(t(item.description,lang))}</p><span class="service-arrow" aria-hidden="true">↗</span></a>`).join('')}</div>`;
+      const solutionNavigator = page.kind === 'home' ? `<section class="solution-navigator" data-solution-navigator aria-labelledby="solution-navigator-title">
+        <div class="solution-navigator-copy"><p class="eyebrow">${esc(t(homeNavigator.kicker,lang))}</p><h2 id="solution-navigator-title">${esc(t(homeNavigator.title,lang))}</h2><p>${esc(t(homeNavigator.text,lang))}</p></div>
+        <div class="solution-navigator-stage" id="navigator-panel" role="tabpanel" aria-labelledby="navigator-option-0" aria-live="polite"><canvas data-navigator-canvas aria-hidden="true"></canvas><div class="navigator-orbit" aria-hidden="true"><span></span><span></span><span></span></div><div class="navigator-card"><p class="navigator-label" data-navigator-label>${esc(t(homeNavigator.options[0].label,lang))}</p><h3 data-navigator-title>${esc(t(homeNavigator.options[0].title,lang))}</h3><p data-navigator-text>${esc(t(homeNavigator.options[0].text,lang))}</p><a class="button-primary" data-navigator-cta data-cta data-cta-location="solution-navigator" href="${link(homeNavigator.options[0].slug,lang)}">${esc(t(homeNavigator.cta,lang))}<span aria-hidden="true">↗</span></a></div></div>
+        <div class="navigator-options" role="tablist" aria-label="${esc(t(ui.navigatorOptions,lang))}">${homeNavigator.options.map((option,index) => `<button type="button" role="tab" id="navigator-option-${index}" aria-controls="navigator-panel" aria-selected="${index === 0}" tabindex="${index === 0 ? 0 : -1}" data-navigator-option data-label="${esc(t(option.label,lang))}" data-title="${esc(t(option.title,lang))}" data-text="${esc(t(option.text,lang))}" data-href="${link(option.slug,lang)}"><span>${String(index + 1).padStart(2,'0')}</span>${esc(t(option.label,lang))}</button>`).join('')}</div>
+      </section>` : '';
       const sections = page.sections?.map(([heading, body]) => `<section class="content-section"><h2>${esc(t(heading,lang))}</h2><p>${esc(t(body,lang))}</p></section>`).join('') || '';
       const related = page.related?.length ? `<section class="related"><h2>${esc(t(ui.related,lang))}</h2><div class="related-links">${page.related.map(slug => `<a href="${link(slug,lang)}">${esc(t(bySlug.get(slug).h1,lang))}<span aria-hidden="true">↗</span></a>`).join('')}</div></section>` : '';
       const faq = page.faq?.length ? `<section class="faq"><h2>${esc(t(ui.questions,lang))}</h2>${page.faq.map(([q,a]) => `<details><summary>${esc(t(q,lang))}</summary><p>${esc(t(a,lang))}</p></details>`).join('')}</section>` : '';
-      const mainContent = page.kind === 'home' ? `<div class="editorial">${sections}</div><section class="solution-index"><h2>${esc(t(ui.explore,lang))}</h2>${serviceGrid}</section>` :
+      const mainContent = page.kind === 'home' ? `<div class="editorial">${sections}</div>${solutionNavigator}<section class="solution-index"><h2>${esc(t(ui.explore,lang))}</h2>${serviceGrid}</section>` :
         page.kind === 'service' ? `<div class="editorial">${sections}</div>${faq}${related}` :
         `<div class="editorial">${sections}</div>${page.kind === 'contact' ? '' : `<section class="solution-index"><h2>${esc(t(ui.explore,lang))}</h2>${serviceGrid}</section>`}`;
       const cta = page.kind === 'cases' || page.kind === 'blog' ? `<p class="pending-note">${esc(t(ui.pending,lang))}</p>` : '';

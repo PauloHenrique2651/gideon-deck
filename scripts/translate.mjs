@@ -3,7 +3,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { servicePages, sitePages } from '../content/pages.mjs';
+import { homeNavigator, servicePages, sitePages } from '../content/pages.mjs';
 import { languages, ui } from './build.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -12,6 +12,10 @@ for (const page of [...sitePages, ...servicePages]) {
   for (const field of ['title','description','h1','intro','cta']) if (page[field]) texts.add(page[field]);
   for (const [heading, body] of page.sections || []) { texts.add(heading); texts.add(body); }
   for (const [question, answer] of page.faq || []) { texts.add(question); texts.add(answer); }
+}
+for (const field of ['kicker','title','text','cta']) texts.add(homeNavigator[field]);
+for (const option of homeNavigator.options) {
+  for (const field of ['label','title','text']) texts.add(option[field]);
 }
 
 function chunks(items, limit = 2800) {
