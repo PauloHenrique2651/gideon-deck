@@ -9,6 +9,10 @@ npm run build
 npm test
 ```
 
+- `home/`: a home em pt-BR (React + GSAP). Cada cena do vídeo da marca é uma seção que se anima ao aparecer. `scripts/build-home.mjs` compila e pré-renderiza a página em `/index.html` (conteúdo completo no HTML, sem depender de JS) com o bundle em `/assets/home`. Para desenvolver: `npm run dev:home` (http://localhost:5174).
+- `assets/img/`: prints dos projetos e letras do logo usados pela home.
+- `llms.txt` e `llms-full.txt`: resumo e conteúdo completo para assistentes de IA, gerados pelo build a partir de `content/pages.mjs`.
+- Contato: WhatsApp e telefone ficam em `scripts/build.mjs` (`whatsappNumber`) e `home/src/lib/gsap.js` (`PHONE`).
 - `content/pages.mjs`: conteúdo original em português do Brasil.
 - `content/translations/*.json`: traduções estáticas usadas no build.
 - `scripts/build.mjs`: gera páginas, canonicals, `hreflang` e sitemap.
