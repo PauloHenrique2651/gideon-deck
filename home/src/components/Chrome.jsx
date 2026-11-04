@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { asset, WHATS } from "../lib/gsap";
+import Arrow from "./Arrow.jsx";
 
 export const scrollToId = (id, after) => (e) => {
   e.preventDefault();
@@ -33,7 +34,7 @@ export default function Chrome() {
           <a href="#projetos" onClick={scrollToId("projetos", close)}>Projetos</a>
           <a href="/sobre">Sobre</a>
           <a href="#contato" onClick={scrollToId("contato", close)}>Contato</a>
-          <a className="btn btn-primary" href={WHATS} target="_blank" rel="noopener noreferrer" data-quote data-cta-location="header">Falar no WhatsApp <span className="arr">↗</span></a>
+          <a className="btn btn-primary" href={WHATS} target="_blank" rel="noopener noreferrer" data-quote data-cta-location="header">Falar no WhatsApp <Arrow /></a>
         </nav>
         <button className="menu-btn" aria-label="Abrir menu" aria-expanded={open} onClick={() => setOpen(!open)}><i /><i /></button>
       </div>

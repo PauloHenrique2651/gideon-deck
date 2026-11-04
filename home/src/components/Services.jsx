@@ -1,4 +1,5 @@
 import { wa } from "../lib/gsap";
+import Arrow from "./Arrow.jsx";
 
 export const SERVICES = [
   ["Software sob medida", "Sistemas web e plataformas alinhados aos processos da sua operação.", "desenvolvimento-de-software-sob-medida"],
@@ -19,29 +20,27 @@ export default function Services() {
   return (
     <section className="services" id="servicos">
       <div className="wrap">
-        <div className="sec-head reveal">
+        <div className="sec-head">
           <div>
-            <div className="eyebrow">12 soluções</div>
             <h2 className="h2">Do sistema sob medida à infraestrutura.</h2>
           </div>
           <p className="lead">Começamos pelo problema mais importante e evoluímos em etapas validadas com a sua equipe.</p>
         </div>
         <div className="sgrid">
           {SERVICES.map(([t, d, slug], i) => (
-            <a className="scard reveal" key={slug} href={`/${slug}`} data-cta data-cta-location="services">
-              <span className="num mono">{String(i + 1).padStart(2, "0")}</span>
+            <a className="scard" key={slug} href={`/${slug}`} data-cta data-cta-location="services">
               <h3>{t}</h3>
               <p>{d}</p>
-              <span className="go" aria-hidden="true">↗</span>
+              <span className="go" aria-hidden="true"><Arrow className="" /></span>
             </a>
           ))}
         </div>
-        <div className="help reveal">
+        <div className="help">
           <div>
             <h3>Não sabe por onde começar?</h3>
             <p>Conte o que trava sua operação hoje. Entendemos o cenário, as ferramentas que você usa e indicamos o caminho mais útil.</p>
           </div>
-          <a className="btn btn-primary" href={wa("um projeto e ainda não sei qual solução escolher")} target="_blank" rel="noopener noreferrer" data-quote data-cta-location="services">Pedir uma indicação <span className="arr">↗</span></a>
+          <a className="btn btn-primary" href={wa("um projeto e ainda não sei qual solução escolher")} target="_blank" rel="noopener noreferrer" data-quote data-cta-location="services">Pedir uma indicação <Arrow /></a>
         </div>
       </div>
     </section>

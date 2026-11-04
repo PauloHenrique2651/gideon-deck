@@ -7,7 +7,6 @@ import Services from "./components/Services.jsx";
 import Projects from "./components/Projects.jsx";
 import Closing from "./components/Closing.jsx";
 import Footer from "./components/Footer.jsx";
-import Reveal from "./components/Reveal.jsx";
 import FloatingCta from "./components/FloatingCta.jsx";
 
 // The page follows the hero film scene by scene; each scene plays by itself when it comes into view.
@@ -25,7 +24,6 @@ export default function App() {
       </main>
       <Footer />
       <FloatingCta />
-      <Reveal />
     </SmoothScroll>
   );
 }

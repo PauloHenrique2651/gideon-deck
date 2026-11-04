@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import Lenis from "lenis";
-import { gsap, ScrollTrigger, reduced } from "../lib/gsap";
+import { gsap, ScrollTrigger } from "../lib/gsap";
 
 export default function SmoothScroll({ children }) {
   useEffect(() => {
-    if (reduced()) return;
+    // only the wheel inertia follows "reduce motion"; the scenes play for everyone (client decision)
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const lenis = new Lenis({ duration: 1.1, smoothWheel: true, wheelMultiplier: 0.9 });
     window.__lenis = lenis;
     lenis.on("scroll", ScrollTrigger.update);

@@ -5,7 +5,6 @@ gsap.registerPlugin(ScrollTrigger);
 export { gsap, ScrollTrigger };
 export const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 export const asset = (p) => `${import.meta.env.BASE_URL}${p}`;
-export const reduced = () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 // contact
 export const PHONE = "5521976848677";

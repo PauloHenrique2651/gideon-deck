@@ -1,5 +1,6 @@
 import { asset, wa, WHATS, PHONE, PHONE_LABEL, INSTAGRAM } from "../lib/gsap";
 import { SERVICES } from "./Services.jsx";
+import Arrow from "./Arrow.jsx";
 
 // Languages the rest of the site is generated in (scripts/build.mjs)
 const LANGS = [["pt-BR", "/", "Português (Brasil)"], ["pt-PT", "/pt-pt", "Português (Portugal)"], ["en", "/en", "English"], ["es", "/es", "Español"], ["de", "/de", "Deutsch"], ["fr", "/fr", "Français"], ["it", "/it", "Italiano"], ["nl", "/nl", "Nederlands"], ["pl", "/pl", "Polski"], ["ja", "/ja", "日本語"], ["zh-CN", "/zh", "中文"], ["ko", "/ko", "한국어"], ["ru", "/ru", "Русский"], ["ar", "/ar", "العربية"]];
@@ -10,8 +11,8 @@ export default function Footer() {
       <div className="wrap footer-grid">
         <div className="f-brand">
           <a href="/" aria-label="Gideon Systems, início"><img src={asset("assets/img/gideon-navy.png")} alt="Gideon Systems" width="140" height="19" /></a>
-          <p>Inteligência de Software que impulsiona negócios.<br />Software house no Rio de Janeiro · Atendimento em todo o Brasil.</p>
-          <a className="btn btn-primary" href={WHATS} target="_blank" rel="noopener noreferrer" data-quote data-cta-location="footer">Falar no WhatsApp <span className="arr">↗</span></a>
+          <p>Inteligência de Software que impulsiona negócios.<br />Software house no Rio de Janeiro, com atendimento em todo o Brasil.</p>
+          <a className="btn btn-primary" href={WHATS} target="_blank" rel="noopener noreferrer" data-quote data-cta-location="footer">Falar no WhatsApp <Arrow /></a>
         </div>
         <nav aria-label="Soluções">
           <h3>Soluções</h3>

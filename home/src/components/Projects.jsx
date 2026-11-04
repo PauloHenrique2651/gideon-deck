@@ -1,5 +1,6 @@
 import { useRef } from "react";
-import { gsap, useIsoLayoutEffect, reduced, onView, whileVisible, asset, wa } from "../lib/gsap";
+import { gsap, useIsoLayoutEffect, onView, whileVisible, asset, wa } from "../lib/gsap";
+import Arrow from "./Arrow.jsx";
 
 // Scene 4 of the film: the delivered sites scroll by in a browser and a phone; the list switches between them.
 const PROJECTS = [
@@ -17,7 +18,6 @@ export default function Projects() {
     const ctx = gsap.context(() => {
       const q = gsap.utils.selector(el);
       const browsers = q(".browser"), phones = q(".phone"), clients = q(".client"), cta = q(".pj-cta")[0];
-      const still = reduced();
       let cur = -1, timer = null, scroll = null;
 
       const show = (i, instant) => {
@@ -41,12 +41,11 @@ export default function Projects() {
         cur = i;
       };
       const tick = () => { timer && timer.kill(); timer = gsap.delayedCall(HOLD, () => { show((cur + 1) % PROJECTS.length); tick(); }); };
-      go.current = (i) => { show(i); if (!still) tick(); };
+      go.current = (i) => { show(i); tick(); };
 
       gsap.set([browsers, phones], { opacity: 0 });
-      if (still) { show(0, true); return; }
       gsap.set(q(".pj-copy > *:not(.clients), .client"), { opacity: 0, y: 30 });
-      onView(el.querySelector(".pj-stage"), () => {
+      onView(el, () => {
         gsap.to(q(".pj-copy > *:not(.clients), .client"), { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", stagger: 0.07 });
         show(0); tick();
       });
@@ -59,7 +58,6 @@ export default function Projects() {
     <section className="scene projects" id="projetos" ref={root}>
       <div className="wrap scene-in">
         <div className="pj-copy">
-          <div className="eyebrow">Projetos entregues</div>
           <h2 className="h2">Sites que viram negócio.</h2>
           <p className="lead">Sites, landing pages e e-commerce conectados à operação.</p>
           <div className="clients" role="tablist" aria-label="Projetos">
@@ -70,12 +68,12 @@ export default function Projects() {
               </button>
             ))}
           </div>
-          <a className="btn btn-primary pj-cta" href={wa(`um site como o da ${PROJECTS[0].name}`)} target="_blank" rel="noopener noreferrer" data-quote data-cta-location="projects">Quero um site assim <span className="arr">↗</span></a>
+          <a className="btn btn-primary pj-cta" href={wa(`um site como o da ${PROJECTS[0].name}`)} target="_blank" rel="noopener noreferrer" data-quote data-cta-location="projects">Quero um site assim <Arrow /></a>
         </div>
         <div className="pj-stage">
           {PROJECTS.map((p) => (
             <a className="browser" key={p.host} href={p.url} target="_blank" rel="noopener noreferrer" aria-label={`Abrir ${p.host}`}>
-              <div className="addr"><span className="dots"><i /><i /><i /></span><div className="url"><Lock />{p.host}<span className="go">↗</span></div></div>
+              <div className="addr"><span className="dots"><i /><i /><i /></span><div className="url"><Lock />{p.host}<Arrow className="go" /></div></div>
               <div className="view"><img src={asset("assets/img/" + p.long)} alt={`Página do site ${p.name}`} /></div>
             </a>
           ))}

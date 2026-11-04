@@ -1,5 +1,6 @@
 import { useRef } from "react";
-import { gsap, useIsoLayoutEffect, reduced, onView, whileVisible, asset, WHATS, PHONE, PHONE_LABEL, INSTAGRAM } from "../lib/gsap";
+import { gsap, useIsoLayoutEffect, onView, whileVisible, asset, WHATS, PHONE, PHONE_LABEL, INSTAGRAM } from "../lib/gsap";
+import Arrow from "./Arrow.jsx";
 
 // Scene 5 of the film: screens orbit the closing line.
 const TILES = ["prima-hero.jpg", "UI-bars", "max-hero.jpg", "UI-kpi", "prima-serv.jpg", "UI-wa", "max-port.jpg", "UI-ok", "prima-pow.jpg", "max-stats.jpg"];
@@ -38,7 +39,6 @@ export default function Closing() {
       place();
       const ro = new ResizeObserver(place);
       ro.observe(ring);
-      if (reduced()) return () => ro.disconnect();
 
       const spin = () => { o.a += 0.0016; place(); };
       let running = false;
@@ -47,7 +47,7 @@ export default function Closing() {
       gsap.set(q(".tile-in"), { opacity: 0, scale: 0.6 });
       gsap.set(q(".close-copy > *"), { opacity: 0, y: 40 });
       let seen = false;
-      onView(ring, () => {
+      onView(el, () => {
         seen = true;
         gsap.to(q(".tile-in"), { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.5)", stagger: 0.04 });
         gsap.to(q(".close-copy > *"), { opacity: 1, y: 0, duration: 0.8, ease: "power4.out", stagger: 0.1, delay: 0.15 });
@@ -65,17 +65,16 @@ export default function Closing() {
         {TILES.map((s, i) => <div className="tile-pos" key={i}><div className="tile-in"><Tile src={s} /></div></div>)}
       </div>
       <div className="close-copy">
-        <div className="eyebrow">O próximo passo</div>
-        <h2 className="h1">Inteligência de Software<br />que <em>impulsiona</em> negócios.</h2>
+        <h2 className="h1">Inteligência de Software<br />que impulsiona negócios.</h2>
         <p className="close-lead">Conte o que trava sua operação hoje. Vamos entender o cenário, as ferramentas que você usa e o caminho mais útil para sua empresa.</p>
         <ol className="steps">
-          {STEPS.map(([t, d], i) => <li key={t}><b className="mono">{String(i + 1).padStart(2, "0")}</b><span><strong>{t}</strong>{d}</span></li>)}
+          {STEPS.map(([t, d], i) => <li key={t}><b>{i + 1}</b><span><strong>{t}</strong>{d}</span></li>)}
         </ol>
         <div className="hero-ctas">
-          <a className="btn btn-primary btn-lg" href={WHATS} target="_blank" rel="noopener noreferrer" data-quote data-cta-location="closing">Conversar pelo WhatsApp <span className="arr">↗</span></a>
+          <a className="btn btn-primary btn-lg" href={WHATS} target="_blank" rel="noopener noreferrer" data-quote data-cta-location="closing">Conversar pelo WhatsApp <Arrow /></a>
           <a className="btn btn-ghost btn-lg" href={`tel:+${PHONE}`} data-cta data-cta-location="closing">Ligar {PHONE_LABEL}</a>
         </div>
-        <p className="close-sub">Rio de Janeiro · Atendimento em todo o Brasil · <a href={INSTAGRAM} target="_blank" rel="noopener noreferrer">@oficial.gideon</a></p>
+        <p className="close-sub">Rio de Janeiro, com atendimento em todo o Brasil. Instagram <a href={INSTAGRAM} target="_blank" rel="noopener noreferrer">@oficial.gideon</a></p>
       </div>
     </section>
   );

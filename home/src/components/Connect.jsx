@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { gsap, useIsoLayoutEffect, reduced, onView, asset } from "../lib/gsap";
+import { gsap, useIsoLayoutEffect, onView, asset } from "../lib/gsap";
 
 // Scene 2 of the film: loose spreadsheets, e-mails and messages fall into place around one system.
 const CH = [
@@ -40,14 +40,13 @@ export default function Connect() {
       };
       const hv = q(".hv")[0];
       // keep wires matching the layout when the screen size changes
-      let done = reduced();
+      let done = false;
       const ro = new ResizeObserver(() => done && draw());
       ro.observe(stage);
 
-      if (done) { hv.textContent = "128"; return () => ro.disconnect(); }
 
       gsap.set(q(".ok"), { scale: 0, opacity: 0 });
-      gsap.set(q(".cx-copy .tl, .cx-copy .eyebrow, .cx-copy .lead"), { opacity: 0, y: 40 });
+      gsap.set(q(".cx-copy .tl, .cx-copy .lead"), { opacity: 0, y: 40 });
       gsap.set(hub, { opacity: 0, scale: 0.85 });
       const mess = (c, i, k = 1) => ({ x: MESS[i][0] * c.offsetWidth * k, y: MESS[i][1] * c.offsetHeight * k, rotation: MESS[i][2] * k });
       cards.forEach((c, i) => gsap.set(c, { ...mess(c, i, 2.4), y: (i < 3 ? -1 : 1) * 160, opacity: 0 }));
@@ -57,8 +56,7 @@ export default function Connect() {
       const wires = draw();
       wires.forEach(({ w, pulse, len }) => { gsap.set(w, { strokeDasharray: len, strokeDashoffset: len }); gsap.set(pulse, { strokeDasharray: `14 ${len}`, strokeDashoffset: 14, opacity: 0 }); });
       const tl = gsap.timeline({ onComplete: () => { done = true; draw(); } });
-      tl.to(q(".cx-copy .eyebrow"), { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0)
-        .to(q(".cx-copy .tl"), { opacity: 1, y: 0, duration: 0.7, ease: "power4.out", stagger: 0.1 }, 0.05)
+      tl.to(q(".cx-copy .tl"), { opacity: 1, y: 0, duration: 0.7, ease: "power4.out", stagger: 0.1 }, 0.05)
         .to(q(".cx-copy .lead"), { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.3)
         .to(hub, { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.6)" }, 0.2);
       cards.forEach((c, i) => {
@@ -76,7 +74,7 @@ export default function Connect() {
       const n = { v: 0 };
       tl.to(n, { v: 128, duration: 1, ease: "power2.out", onUpdate: () => (hv.textContent = Math.round(n.v)) }, 2.75);
       };
-      onView(stage, play, "top 75%");
+      onView(el, play, "top 60%");
       return () => ro.disconnect();
     }, el);
     return () => ctx.revert();
@@ -86,8 +84,7 @@ export default function Connect() {
     <section className="scene connect" id="conectada" ref={root}>
       <div className="wrap scene-in">
         <div className="cx-copy">
-          <div className="eyebrow">Menos retrabalho</div>
-          <h2 className="h2"><span className="tl">Sua operação,</span> <span className="tl">conectada<em>.</em></span></h2>
+          <h2 className="h2"><span className="tl">Sua operação,</span> <span className="tl">conectada.</span></h2>
           <p className="lead">Planilhas, e-mails e mensagens soltos viram um só sistema.</p>
         </div>
         <div className="cx-stage">

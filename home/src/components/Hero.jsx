@@ -1,6 +1,7 @@
 import { useRef } from "react";
-import { gsap, ScrollTrigger, useIsoLayoutEffect, reduced, asset, WHATS, PHONE, PHONE_LABEL } from "../lib/gsap";
+import { gsap, ScrollTrigger, useIsoLayoutEffect, asset, WHATS, PHONE, PHONE_LABEL } from "../lib/gsap";
 import { scrollToId } from "./Chrome.jsx";
+import Arrow from "./Arrow.jsx";
 
 // Scene 1 of the film: the editor types the code, collapses into a seam and the wordmark rises from it.
 const CODE = [
@@ -34,7 +35,6 @@ export default function Hero() {
 
       // the prerendered page hides these until the intro takes over (see .js rules in styles.css)
       gsap.set([mark, q(".intro-copy")], { visibility: "visible" });
-      if (reduced()) { gsap.set(q(".editor"), { display: "none" }); gsap.set(lines, { clipPath: "none" }); return; }
 
       gsap.set(stage, { height: q(".editor")[0].offsetHeight });
       gsap.set(mark, { autoAlpha: 1 });
@@ -98,13 +98,13 @@ export default function Hero() {
           </div>
         </div>
         <div className="intro-copy">
-          <h1 className="intro-tag">Software sob medida para sua empresa <em>avançar</em>.</h1>
+          <h1 className="intro-tag">Software sob medida para sua empresa avançar.</h1>
           <p className="intro-lead">Sistemas, ERP, CRM e automações para reduzir retrabalho e conectar sua operação. Software house no Rio de Janeiro com atendimento em todo o Brasil.</p>
           <div className="hero-ctas">
-            <a className="btn btn-primary" href={WHATS} target="_blank" rel="noopener noreferrer" data-quote data-cta-location="hero">Conversar sobre meu projeto <span className="arr">↗</span></a>
-            <a className="btn btn-ghost" href="#solucoes" onClick={scrollToId("solucoes")}>Ver soluções <span className="arr">↓</span></a>
+            <a className="btn btn-primary" href={WHATS} target="_blank" rel="noopener noreferrer" data-quote data-cta-location="hero">Conversar sobre meu projeto <Arrow /></a>
+            <a className="btn btn-ghost" href="#solucoes" onClick={scrollToId("solucoes")}>Ver soluções <Arrow dir="down" /></a>
           </div>
-          <p className="cta-note"><span className="pulse" />Atendimento direto pelo WhatsApp · <a href={`tel:+${PHONE}`}>{PHONE_LABEL}</a></p>
+          <p className="cta-note"><span className="pulse" />Atendimento direto pelo WhatsApp: <a href={`tel:+${PHONE}`}>{PHONE_LABEL}</a></p>
         </div>
       </div>
     </section>

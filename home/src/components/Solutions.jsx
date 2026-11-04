@@ -1,5 +1,6 @@
 import { useRef } from "react";
-import { gsap, useIsoLayoutEffect, reduced, onView, whileVisible, wa } from "../lib/gsap";
+import { gsap, useIsoLayoutEffect, onView, whileVisible, wa } from "../lib/gsap";
+import Arrow from "./Arrow.jsx";
 
 // Scene 3 of the film: a deck of product screens. It deals itself while on screen; the list picks a screen.
 const ITEMS = ["CRM sob medida", "ERP integrado", "Dashboards e BI", "Automação de processos", "IA com revisão humana"];
@@ -130,7 +131,6 @@ export default function Solutions() {
     const ctx = gsap.context(() => {
       const q = gsap.utils.selector(el);
       const panels = q(".ui"), rows = q(".svc"), cta = q(".sl-cta .btn")[0], more = q(".sl-cta .more")[0];
-      const still = reduced();
       let cur = -1, timer = null, micro = null;
 
       const show = (i, instant) => {
@@ -152,13 +152,12 @@ export default function Solutions() {
         cur = i;
       };
       const tick = () => { timer && timer.kill(); timer = gsap.delayedCall(HOLD, () => { show((cur + 1) % ITEMS.length); tick(); }); };
-      go.current = (i) => { show(i); if (!still) tick(); };
+      go.current = (i) => { show(i); tick(); };
 
       gsap.set(panels, { x: "60%", y: 30, rotation: 8, opacity: 0 });
-      if (still) { show(0, true); return; }
-      gsap.set(q(".sl-copy .tl, .sl-copy .eyebrow, .svc, .sl-cta"), { opacity: 0, y: 30 });
-      onView(el.querySelector(".deck"), () => {
-        gsap.to(q(".sl-copy .eyebrow, .sl-copy .tl, .svc, .sl-cta"), { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", stagger: 0.06 });
+      gsap.set(q(".sl-copy .tl, .svc, .sl-cta"), { opacity: 0, y: 30 });
+      onView(el, () => {
+        gsap.to(q(".sl-copy .tl, .svc, .sl-cta"), { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", stagger: 0.06 });
         show(0); tick();
       });
       // only deal the deck while it is on screen
@@ -171,17 +170,16 @@ export default function Solutions() {
     <section className="scene solutions" id="solucoes" ref={root}>
       <div className="wrap scene-in">
         <div className="sl-copy">
-          <div className="eyebrow">O que fazemos</div>
           <h2 className="h2"><span className="tl">Sistemas que</span> <span className="tl">trabalham por você.</span></h2>
           <div className="svc-list" role="tablist" aria-label="Soluções">
             <div className="svc-bar" />
             {ITEMS.map((t, i) => (
-              <button className="svc" key={t} role="tab" aria-selected={i === 0} onClick={() => go.current(i)}><b className="mono">{String(i + 1).padStart(2, "0")}</b>{t}</button>
+              <button className="svc" key={t} role="tab" aria-selected={i === 0} onClick={() => go.current(i)}>{t}</button>
             ))}
           </div>
           <div className="sl-cta">
-            <a className="btn btn-primary" href={wa(CTAS[0][1])} target="_blank" rel="noopener noreferrer" data-quote data-cta-location="solutions">{CTAS[0][0] + " "}<span className="arr">↗</span></a>
-            <a className="more" href={"/" + CTAS[0][2]} data-cta data-cta-location="solutions">Saiba mais <span aria-hidden="true">→</span></a>
+            <a className="btn btn-primary" href={wa(CTAS[0][1])} target="_blank" rel="noopener noreferrer" data-quote data-cta-location="solutions">{CTAS[0][0] + " "}<Arrow /></a>
+            <a className="more" href={"/" + CTAS[0][2]} data-cta data-cta-location="solutions">Saiba mais <Arrow dir="right" /></a>
           </div>
         </div>
         <div className="deck" aria-hidden="true"><Screens /></div>
