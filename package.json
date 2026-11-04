@@ -3,8 +3,19 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node scripts/build.mjs",
+    "build": "node scripts/build.mjs && node scripts/build-home.mjs",
     "test": "node scripts/test.mjs",
-    "check": "npm run build && npm test"
+    "check": "npm run build && npm test",
+    "dev:home": "vite --config home/vite.config.js"
+  },
+  "dependencies": {
+    "gsap": "3.12.5",
+    "lenis": "1.1.13",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "4.3.4",
+    "vite": "5.4.11"
   }
 }

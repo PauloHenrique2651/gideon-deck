@@ -2,3 +2,4 @@
 output/
 output-lighthouse.json
 node_modules/
+.home-build/

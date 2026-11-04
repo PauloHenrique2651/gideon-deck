@@ -1,0 +1,50 @@
+# Gideon Systems
+
+> Software house no Rio de Janeiro com atendimento nacional. Desenvolvemos sistemas, ERP, CRM e automações para reduzir retrabalho e conectar sua operação.
+
+A Gideon Systems é uma software house no Rio de Janeiro com atendimento em todo o Brasil. Desenvolve software sob medida, ERP, CRM, dashboards e BI, automação de processos, integrações, inteligência artificial com revisão humana, sites, landing pages, e-commerce, infraestrutura e consultoria de TI.
+Slogan: "Inteligência de Software que impulsiona negócios." Os projetos começam pelo problema mais importante da operação e evoluem em entregas validadas com a equipe do cliente.
+
+## Contato
+- WhatsApp: [(21) 97684-8677](https://wa.me/5521976848677)
+- Telefone: +55 (21) 97684-8677
+- Instagram: [@oficial.gideon](https://www.instagram.com/oficial.gideon/)
+- Site: https://www.gideonsystems.com.br/
+
+## Soluções
+- [Um sistema sob medida para sua empresa ganhar tempo e controle](https://www.gideonsystems.com.br/desenvolvimento-de-software-sob-medida): Sistemas web e plataformas empresariais alinhados aos processos da sua operação. Planeje um software sob medida com a Gideon Systems.
+- [Um CRM que acompanha o jeito da sua empresa vender](https://www.gideonsystems.com.br/crm-sob-medida): CRM personalizado para leads, pipeline, equipe, propostas, automações e integrações. Converse sobre o processo comercial da sua empresa.
+- [Compras, estoque, vendas e financeiro no mesmo fluxo](https://www.gideonsystems.com.br/erp-sob-medida): ERP personalizado para compras, vendas, estoque, financeiro e gestão integrada. Planeje seus módulos e integrações com a Gideon.
+- [Decisões mais rápidas com os indicadores certos em um só lugar](https://www.gideonsystems.com.br/desenvolvimento-de-dashboard): Dashboards personalizados e BI empresarial para vendas, financeiro, estoque e operações. Transforme dados em visão de gestão.
+- [Menos tarefas repetitivas. Mais tempo para fazer o negócio crescer.](https://www.gideonsystems.com.br/automacao-de-processos): Automatize tarefas, notificações e fluxos entre CRM, ERP, WhatsApp e APIs. Descubra onde reduzir retrabalho na sua operação.
+- [Seus sistemas trabalhando juntos, sem informação duplicada](https://www.gideonsystems.com.br/integracoes): Conecte ERP, CRM, e-commerce, pagamentos, WhatsApp e sistemas legados com APIs e webhooks. Converse sobre sua integração.
+- [Inteligência artificial aplicada onde gera valor para sua empresa](https://www.gideonsystems.com.br/inteligencia-artificial): Aplique IA e agentes em processos empresariais com integração, governança e revisão humana. Avalie oportunidades reais para sua operação.
+- [Um site profissional que transforma visitas em oportunidades](https://www.gideonsystems.com.br/criacao-de-sites): Sites institucionais rápidos, responsivos e preparados para SEO e conversão. Desenvolva sua presença digital com a Gideon Systems.
+- [Landing pages que deixam sua oferta clara e facilitam a conversão](https://www.gideonsystems.com.br/landing-pages): Landing pages com mensagem clara, performance, analytics e CTAs para campanhas e geração de leads. Planeje sua página com a Gideon.
+- [Um e-commerce conectado à sua operação, do catálogo ao pedido](https://www.gideonsystems.com.br/ecommerce): E-commerce conectado a catálogo, ERP, pagamentos e operação comercial. Avalie uma experiência de venda alinhada ao seu negócio.
+- [Tecnologia confiável para sua empresa continuar trabalhando](https://www.gideonsystems.com.br/infraestrutura-ti): Redes, servidores e suporte para a base tecnológica da operação. Converse com a Gideon sobre infraestrutura de TI empresarial.
+- [Decisões melhores de tecnologia, sem investimento desperdiçado](https://www.gideonsystems.com.br/consultoria-ti): Diagnóstico de processos, sistemas e infraestrutura para priorizar investimentos em tecnologia. Solicite uma análise do seu cenário.
+
+## Empresa
+- [Gideon Systems: software e tecnologia orientados ao negócio](https://www.gideonsystems.com.br/sobre): Conheça a Gideon Systems, software house no Rio de Janeiro com projetos de software e tecnologia para empresas em todo o Brasil.
+- [Fale com a Gideon sobre seu projeto](https://www.gideonsystems.com.br/contato): Converse com a Gideon Systems sobre software sob medida, ERP, CRM, automações, sites e infraestrutura. Conte o contexto do seu projeto.
+
+## Idiomas
+- [Português (Brasil)](https://www.gideonsystems.com.br/) (pt-BR)
+- [Português (Portugal)](https://www.gideonsystems.com.br/pt-pt) (pt-PT)
+- [English](https://www.gideonsystems.com.br/en) (en)
+- [Español](https://www.gideonsystems.com.br/es) (es)
+- [Deutsch](https://www.gideonsystems.com.br/de) (de)
+- [Français](https://www.gideonsystems.com.br/fr) (fr)
+- [Italiano](https://www.gideonsystems.com.br/it) (it)
+- [Nederlands](https://www.gideonsystems.com.br/nl) (nl)
+- [Polski](https://www.gideonsystems.com.br/pl) (pl)
+- [日本語](https://www.gideonsystems.com.br/ja) (ja)
+- [中文](https://www.gideonsystems.com.br/zh) (zh-CN)
+- [한국어](https://www.gideonsystems.com.br/ko) (ko)
+- [Русский](https://www.gideonsystems.com.br/ru) (ru)
+- [العربية](https://www.gideonsystems.com.br/ar) (ar)
+
+## Optional
+- [Conteúdo completo em texto](https://www.gideonsystems.com.br/llms-full.txt): todas as páginas em português, com perguntas frequentes
+- [Sitemap](https://www.gideonsystems.com.br/sitemap.xml)

@@ -6,7 +6,10 @@ import { homeNavigator, servicePages, sitePages } from '../content/pages.mjs';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const origin = 'https://www.gideonsystems.com.br';
 const instagram = 'https://www.instagram.com/oficial.gideon/';
-const whatsappNumber = '5521991060165';
+export const whatsappNumber = '5521976848677';
+export const phoneLabel = '(21) 97684-8677';
+// favicon set shared by every generated page and the prerendered home (scripts/build-home.mjs)
+export const iconLinks = '<link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><meta name="theme-color" content="#1C3458">';
 
 export const languages = [
   ['pt-BR', '', 'Português (Brasil)'], ['pt-PT', 'pt-pt', 'Português (Portugal)'],
@@ -129,7 +132,7 @@ ${page.noindex ? '' : alternateLinks(page.slug)}
 <meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${url}">
 <meta property="og:image" content="${origin}/assets/images/og-gideon.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(title)}"><meta name="twitter:description" content="${esc(description)}"><meta name="twitter:image" content="${origin}/assets/images/og-gideon.png">
-<link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg"><link rel="manifest" href="/site.webmanifest"><meta name="theme-color" content="#1C3458">
+${iconLinks}
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/service.css">
 ${schema.length ? `<script type="application/ld+json">${json({'@context':'https://schema.org','@graph':schema})}</script>` : ''}
@@ -152,13 +155,51 @@ ${schema.length ? `<script type="application/ld+json">${json({'@context':'https:
     }
   }
   const routes = allPages.filter(page => !page.noindex).map(page => page.slug);
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${routes.flatMap(slug => languages.map(([lang]) => `<url><loc>${canonical(lang,slug)}</loc>${languages.map(([code]) => `<xhtml:link rel="alternate" hreflang="${code}" href="${canonical(code,slug)}"/>`).join('')}<xhtml:link rel="alternate" hreflang="x-default" href="${canonical('pt-BR',slug)}"/></url>`)).join('\n')}\n</urlset>`;
+  const today = new Date().toISOString().slice(0, 10);
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${routes.flatMap(slug => languages.map(([lang]) => `<url><loc>${canonical(lang,slug)}</loc><lastmod>${today}</lastmod>${languages.map(([code]) => `<xhtml:link rel="alternate" hreflang="${code}" href="${canonical(code,slug)}"/>`).join('')}<xhtml:link rel="alternate" hreflang="x-default" href="${canonical('pt-BR',slug)}"/></url>`)).join('\n')}\n</urlset>`;
   await writeFile(join(root,'sitemap.xml'), sitemap, 'utf8');
-  await writeFile(join(root,'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${origin}/sitemap.xml\n`, 'utf8');
+  await writeFile(join(root,'robots.txt'), robots(), 'utf8');
+  await writeFile(join(root,'llms.txt'), llms(), 'utf8');
+  await writeFile(join(root,'llms-full.txt'), llmsFull(), 'utf8');
   console.log(`Generated ${languages.length * allPages.length} localized pages and ${routes.length * languages.length} sitemap URLs.`);
+}
+
+// Search engines and AI assistants are welcome: the site is public marketing content.
+const AI_CRAWLERS = ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-User', 'Claude-SearchBot', 'anthropic-ai', 'PerplexityBot', 'Perplexity-User', 'Google-Extended', 'Applebot-Extended', 'CCBot', 'meta-externalagent', 'Amazonbot', 'DuckAssistBot'];
+function robots() {
+  const bots = AI_CRAWLERS.map(bot => `User-agent: ${bot}\nAllow: /\n`).join('\n');
+  return `User-agent: *\nAllow: /\n\n${bots}\n# Resumo do site para assistentes de IA: ${origin}/llms.txt\nSitemap: ${origin}/sitemap.xml\n`;
+}
+
+const pt = (slug) => canonical('pt-BR', slug);
+const company = 'A Gideon Systems é uma software house no Rio de Janeiro com atendimento em todo o Brasil. Desenvolve software sob medida, ERP, CRM, dashboards e BI, automação de processos, integrações, inteligência artificial com revisão humana, sites, landing pages, e-commerce, infraestrutura e consultoria de TI.';
+const contactLines = () => [`- WhatsApp: [${phoneLabel}](https://wa.me/${whatsappNumber})`, `- Telefone: +55 ${phoneLabel}`, `- Instagram: [@oficial.gideon](${instagram})`, `- Site: ${origin}/`];
+
+// llms.txt (https://llmstxt.org): what the company does and where each answer lives
+function llms() {
+  const home = sitePages.find(p => p.kind === 'home');
+  return [
+    '# Gideon Systems', '',
+    `> ${home.description}`, '',
+    company,
+    'Slogan: "Inteligência de Software que impulsiona negócios." Os projetos começam pelo problema mais importante da operação e evoluem em entregas validadas com a equipe do cliente.', '',
+    '## Contato', ...contactLines(), '',
+    '## Soluções', ...servicePages.map(p => `- [${p.h1}](${pt(p.slug)}): ${p.description}`), '',
+    '## Empresa', ...sitePages.filter(p => !p.noindex && p.kind !== 'home').map(p => `- [${p.h1}](${pt(p.slug)}): ${p.description}`), '',
+    '## Idiomas', ...languages.map(([code, , name]) => `- [${name}](${canonical(code)}) (${code})`), '',
+    '## Optional', `- [Conteúdo completo em texto](${origin}/llms-full.txt): todas as páginas em português, com perguntas frequentes`, `- [Sitemap](${origin}/sitemap.xml)`, ''
+  ].join('\n');
+}
+function llmsFull() {
+  const block = (p) => [
+    `## ${p.h1}`, '', `URL: ${pt(p.slug)}`, '', p.intro, '',
+    ...(p.sections || []).flatMap(([h, b]) => [`### ${h}`, '', b, '']),
+    ...(p.faq?.length ? ['### Perguntas frequentes', '', ...p.faq.flatMap(([q, a]) => [`**${q}**`, '', a, ''])] : [])
+  ].join('\n');
+  return ['# Gideon Systems — conteúdo completo', '', `> ${company}`, '', '## Contato', ...contactLines(), '', ...allPages.filter(p => !p.noindex).map(block)].join('\n');
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === join(process.cwd(), process.argv[1]).replaceAll('\\','/')) run();
 else if (process.argv[1]?.endsWith('build.mjs')) run();
 
-export { ui, allPages };
+export { ui, allPages, origin, instagram, canonical, alternateLinks, json };

@@ -30,8 +30,15 @@ for (const [lang, prefix] of languages) {
     }
     assert.ok(html.includes(`<link rel="canonical" href="${expectedCanonical}">`), `${file}: canonical`);
     assert.ok(html.includes('og:image') && html.includes('twitter:card'), `${file}: social metadata`);
-    assert.ok(html.includes('https://wa.me/5521991060165?text='), `${file}: contextual WhatsApp`);
-    if (page.kind === 'home') {
+    assert.ok(html.includes('https://wa.me/5521976848677?text='), `${file}: contextual WhatsApp`);
+    assert.ok(html.includes('href="/favicon.ico"') && html.includes('apple-touch-icon'), `${file}: favicons`);
+    if (page.kind === 'home' && lang === 'pt-BR') {
+      // prerendered motion home (scripts/build-home.mjs)
+      for (const id of ['inicio', 'conectada', 'solucoes', 'servicos', 'projetos', 'contato']) assert.ok(html.includes(`id="${id}"`), `${file}: section #${id}`);
+      assert.ok(html.includes('"@type":"Organization"') && html.includes('"telephone":"+55 21 97684-8677"'), `${file}: organization schema`);
+      assert.ok(html.includes('/assets/home/'), `${file}: home bundle`);
+      for (const service of servicePages) assert.ok(html.includes(`href="/${service.slug}"`), `${file}: link to ${service.slug}`);
+    } else if (page.kind === 'home') {
       assert.ok(html.includes('data-solution-navigator'), `${file}: solution navigator`);
       assert.ok(html.includes('data-navigator-option'), `${file}: navigator options`);
       assert.ok(html.includes('data-hero-video'), `${file}: motion hero`);
@@ -68,6 +75,12 @@ for (const url of expectedUrls) assert.ok(locations.includes(url), `Missing site
 assert.ok(!sitemap.includes('/cases<') && !sitemap.includes('/blog<'), 'Noindex pages in sitemap');
 const robots = await readFile(join(root,'robots.txt'),'utf8');
 assert.ok(robots.includes(`Sitemap: ${origin}/sitemap.xml`));
+assert.ok(robots.includes('User-agent: GPTBot') && robots.includes('User-agent: ClaudeBot'), 'AI crawlers allowed');
+const llms = await readFile(join(root,'llms.txt'),'utf8');
+assert.ok(llms.startsWith('# Gideon Systems') && llms.includes('wa.me/5521976848677'), 'llms.txt');
+for (const page of servicePages) assert.ok(llms.includes(`${origin}/${page.slug}`), `llms.txt: ${page.slug}`);
+assert.ok((await readFile(join(root,'llms-full.txt'),'utf8')).includes('Perguntas frequentes'), 'llms-full.txt');
+for (const icon of ['favicon.ico','apple-touch-icon.png','assets/images/favicon.svg','assets/images/icon-192.png','assets/images/icon-512.png']) await stat(join(root, icon));
 const analytics = await readFile(join(root,'analytics.js'),'utf8');
 const interactions = await readFile(join(root,'service.js'),'utf8');
 assert.ok((await stat(join(root,'assets','video','gideon-systems.mp4')).catch(() => ({size:0}))).size > 0, 'Missing Gideon hero video');

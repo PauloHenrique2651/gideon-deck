@@ -1,1 +1,16 @@
-{"name":"Gideon Systems","short_name":"Gideon","start_url":"/","display":"browser","background_color":"#F7F7F8","theme_color":"#1C3458","icons":[{"src":"/assets/images/favicon.svg","sizes":"any","type":"image/svg+xml"}]}
+{
+  "name": "Gideon Systems",
+  "short_name": "Gideon",
+  "description": "Software sob medida, ERP, CRM, dashboards, automações e IA. Software house no Rio de Janeiro com atendimento em todo o Brasil.",
+  "lang": "pt-BR",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#F7F7F8",
+  "theme_color": "#1C3458",
+  "icons": [
+    { "src": "/assets/images/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/assets/images/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/images/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/assets/images/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
